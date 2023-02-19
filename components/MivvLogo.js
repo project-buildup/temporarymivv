@@ -2,7 +2,7 @@ import { View, Image, StyleSheet } from "react-native";
 
 function MivvLogo() {
   return (
-    <View style={styles.mivvContainer}>
+    <View style={styles.container}>
       <Image source={require("../assets/mivvLogo.png")} />
     </View>
   );
@@ -11,7 +11,7 @@ function MivvLogo() {
 export default MivvLogo;
 
 const styles = StyleSheet.create({
-  mivvContainer: {
+  container: {
     width: 90,
     height: 30,
     justifyContent: "center",

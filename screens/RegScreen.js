@@ -1,12 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Reg_000 from "./Reg_000";
-import Reg_001 from "./Reg_001";
-import Reg_002 from "./Reg_002";
+import Reg_000 from "./Reg/Reg_000";
+import Reg_001 from "./Reg/Reg_001";
+import Reg_002 from "./Reg/Reg_002";
 
 const Stack = createNativeStackNavigator();
 
-function RegScreen({ SetIsIdStored }) {
+function RegScreen() {
   return (
     <>
       <NavigationContainer>
@@ -27,9 +27,10 @@ function RegScreen({ SetIsIdStored }) {
           />
           <Stack.Screen
             name="Reg_002"
-            children={({ navigation }) => (
-              <Reg_002 SetIsIdStored={SetIsIdStored} navigation={navigation} />
-            )}
+            component={Reg_002}
+            // children={({ navigation }) => (
+            //   <Reg_002 SetIsIdStored={SetIsIdStored} navigation={navigation} />
+            // )}
             options={{
               headerShown: false,
               presentation: "transparentModal",

@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-function PopUpChallenge({ onPress }) {
+function ChallengeItem({ onPress }) {
   return (
     <Pressable
       style={styles.container}
@@ -13,7 +13,7 @@ function PopUpChallenge({ onPress }) {
   );
 }
 
-export default PopUpChallenge;
+export default ChallengeItem;
 
 const styles = StyleSheet.create({
   container: {

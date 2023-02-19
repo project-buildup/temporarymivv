@@ -1,66 +1,61 @@
 import {
+  Button,
   Platform,
   Pressable,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   View,
 } from "react-native";
 import Constants from "expo-constants";
-import BackIcon from "../components/BackIcon";
+import MivvLogo from "../../components/MivvLogo";
+import AlarmIcon from "../../components/AlarmIcon";
+import BackIcon from "../../components/BackIcon";
+import { useState } from "react";
+import { Dialog } from "react-native-simple-dialogs";
 
-function HelpScreen({ navigation }) {
+function RCDetail({ navigation }) {
   return (
     <SafeAreaView style={styles.root}>
-      <View style={styles.rootContainer}>
-        <View style={styles.logoContainer}>
-          <View style={styles.backTitle}>
+      <ScrollView>
+        <View style={styles.rootContainer}>
+          <View style={styles.logoContainer}>
+            <View style={{ width: 30 }}></View>
             <Pressable
+              style={styles.margin}
               onPress={() => {
                 navigation.goBack();
               }}
             >
               <BackIcon />
             </Pressable>
-            <Text style={styles.title}>고객센터 / 문의</Text>
           </View>
-          <View style={styles.margin}></View>
+          <Text>RCDetail</Text>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
-export default HelpScreen;
+export default RCDetail;
 
 const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: "white",
+    paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
   },
   rootContainer: {
     flex: 1,
-    paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
     alignItems: "center",
   },
   logoContainer: {
     width: "100%",
-    margin: 34,
+    marginTop: 34,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
-  },
-  backTitle: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  titleContainer: {
-    marginLeft: 20,
-  },
-  title: {
-    fontSize: 19,
-    fontWeight: "600",
-    marginLeft: 24,
+    justifyContent: "flex-start",
   },
   margin: {
     width: 22,

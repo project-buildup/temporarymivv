@@ -2,7 +2,7 @@ import { View, Image, StyleSheet } from "react-native";
 
 function AlarmIcon() {
   return (
-    <View style={styles.mivvContainer}>
+    <View style={styles.container}>
       <Image source={require("../assets/alarmIcon.png")} />
     </View>
   );
@@ -11,7 +11,7 @@ function AlarmIcon() {
 export default AlarmIcon;
 
 const styles = StyleSheet.create({
-  mivvContainer: {
+  container: {
     width: 22,
     height: 24,
     justifyContent: "center",

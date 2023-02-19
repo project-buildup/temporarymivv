@@ -1,8 +1,9 @@
 import User from "../models/user";
 import Challenge from "../models/challenge";
-import ChallengeUser from "../models/challengeUser";
+import ChallengeLog from "../models/challengeLog";
 import Value from "../models/value";
 import Coupon from "../models/coupon";
+import CouponLog from "../models/couponLog";
 import Archive from "../models/archive";
 import Short from "../models/short";
 import Advertisement from "../models/advertisement";
@@ -16,12 +17,13 @@ export const users = [
     "홍길동",
     "1999-02-05",
     "testemail1@projectbuildup.io",
-    { password: "123456", count: 0 },
+    "123456",
     0,
     { bank: "shinhan", account: "12345678910123" },
     [],
     [],
     { total: 850000, thisMonth: { price: 80000, ranking: 1 } },
+    [],
     [],
     [],
     true,
@@ -34,12 +36,13 @@ export const users = [
     "홍길서",
     "1998-02-05",
     "testemail2@projectbuildup.io",
-    { password: "123456", count: 0 },
+    "123456",
     0,
     { bank: "shinhan", account: "12345678910124" },
     [],
     [],
     { total: 840000, thisMonth: { price: 70000, ranking: 2 } },
+    [],
     [],
     [],
     true,
@@ -52,12 +55,13 @@ export const users = [
     "홍길남",
     "1997-02-05",
     "testemail3@projectbuildup.io",
-    { password: "123456", count: 0 },
+    "123456",
     0,
     { bank: "shinhan", account: "12345678910125" },
     [],
     [],
     { total: 830000, thisMonth: { price: 60000, ranking: 3 } },
+    [],
     [],
     [],
     true,
@@ -70,12 +74,13 @@ export const users = [
     "홍길북",
     "1996-02-05",
     "testemail4@projectbuildup.io",
-    { password: "123456", count: 0 },
+    "123456",
     0,
     { bank: "shinhan", account: "12345678910126" },
     [],
     [],
     { total: 820000, thisMonth: { price: 50000, ranking: 4 } },
+    [],
     [],
     [],
     true,
@@ -88,12 +93,13 @@ export const users = [
     "홍길중",
     "1995-02-05",
     "testemail4@projectbuildup.io",
-    { password: "123456", count: 0 },
+    "123456",
     0,
     { bank: "shinhan", account: "12345678910127" },
     [],
     [],
     { total: 810000, thisMonth: { price: 40000, ranking: 5 } },
+    [],
     [],
     [],
     true,
@@ -106,6 +112,10 @@ export const challenges = [
     "배달팁 아끼기",
     "배달말고 포장, 배달팁 아끼기!",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    [
+      "배달말고 포장해서, 배달팁도 아끼고 건강도 챙기기!",
+      "칼로리 높은 배달음식도 먹을텐데, 조금 걸어두는 편이 좋지 않겠어요?",
+    ],
     "2023-01-01",
     "2023-02-28",
     [],
@@ -116,6 +126,10 @@ export const challenges = [
     "커피값 아끼기",
     "그 커피 꼭 사야 해?",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    [
+      "배달말고 포장해서, 배달팁도 아끼고 건강도 챙기기!",
+      "칼로리 높은 배달음식도 먹을텐데, 조금 걸어두는 편이 좋지 않겠어요?",
+    ],
     "2023-01-01",
     "2023-02-28",
     [],
@@ -126,6 +140,10 @@ export const challenges = [
     "택시비 아끼기",
     "걸어서 갈 수 있잖아?",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    [
+      "배달말고 포장해서, 배달팁도 아끼고 건강도 챙기기!",
+      "칼로리 높은 배달음식도 먹을텐데, 조금 걸어두는 편이 좋지 않겠어요?",
+    ],
     "2023-01-01",
     "2023-02-28",
     [],
@@ -134,8 +152,9 @@ export const challenges = [
   ),
 ];
 
-export const challengeUsers = [
-  new ChallengeUser("", "", 8000, 2, 3, "2023-02-04"),
+export const challengeLogs = [
+  new ChallengeLog("", "", 4500, "2023-02-04"),
+  new ChallengeLog("", "", 3000, "2023-02-03"),
 ];
 
 export const values = [
@@ -162,7 +181,13 @@ export const values = [
   ),
 ];
 
-export const coupons = [new Coupon("", "레드맥스짐 3월 할인권", "2023-03-31")];
+export const coupons = [
+  new Coupon("", "레드맥스짐 3월 할인권", "1234", "2023-03-31"),
+];
+export const couponLogs = [
+  new CouponLog("", "", "create", "2023-02-10"),
+  new CouponLog("", "", "use", "2023-02-10"),
+];
 
 export const archives = [new Archive("SAVER", "")];
 
@@ -171,7 +196,15 @@ export const shorts = [
     "https://youtu.be/0gY_z7fqPjs",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
     "고길동",
+    "sav",
     "샘플 비디오1"
+  ),
+  new Short(
+    "https://youtu.be/0gY_z7fqPjs",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "고등어",
+    "edu",
+    "샘플 비디오2"
   ),
 ];
 
@@ -179,8 +212,19 @@ export const advertisements = [
   new Advertisement(
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg"
   ),
+  new Advertisement(
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg"
+  ),
 ];
 
 export const helps = [
-  new Help("", "문의 샘플1", "문의 내용입니다.", false, "2023-02-10"),
+  new Help(
+    "",
+    "문의 샘플1",
+    "문의 내용입니다.",
+    "문의 답변입니다",
+    "2023-02-10",
+    "2023-02-11"
+  ),
+  new Help("", "문의 샘플2", "문의 내용입니다.", "", "2023-02-11", ""),
 ];
