@@ -14,7 +14,7 @@ import AlarmIcon from "../../components/AlarmIcon";
 function ChList({ navigation }) {
   return (
     <SafeAreaView style={styles.root}>
-      <ScrollView bounces={false}>
+      <ScrollView>
         <View style={styles.rootContainer}>
           <View style={styles.logoContainer}>
             <View style={styles.margin} />

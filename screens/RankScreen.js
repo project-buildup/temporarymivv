@@ -1,4 +1,5 @@
 import {
+  Image,
   Platform,
   Pressable,
   SafeAreaView,
@@ -24,7 +25,6 @@ function RankScreen({ navigation }) {
           >
             <BackIcon />
           </Pressable>
-
           <MivvLogo />
           <AlarmIcon />
         </View>

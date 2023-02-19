@@ -1,4 +1,6 @@
 import {
+  Image,
+  ImageBackground,
   Platform,
   Pressable,
   SafeAreaView,
@@ -9,13 +11,34 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import { Dialog } from "react-native-simple-dialogs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MivvLogo from "../../components/MivvLogo";
 import AlarmIcon from "../../components/AlarmIcon";
 import ChallengeItem from "../../components/ChallengeItem";
+import { fetchData, fetchKeyData } from "../../util/http";
 
 function Main_000({ navigation }) {
   const [popUpVisible, setPopUpVisible] = useState(false);
+  const [adImageUri, setAdImageUri] = useState();
+  const [challengeImageUri, setChallengeImageUri] = useState();
+
+  useEffect(() => {
+    async function getImage(type) {
+      try {
+        const keys = await fetchKeyData(type);
+        const image = await fetchData(type + "/" + keys[0] + "/image");
+        if (type === "advertisements") {
+          setAdImageUri(image);
+        } else {
+          setChallengeImageUri(image);
+        }
+      } catch (error) {
+        console.log("Could not fetch keys!");
+      }
+    }
+    getImage("advertisements");
+    getImage("challenges");
+  }, []);
 
   return (
     <SafeAreaView style={styles.root}>
@@ -27,11 +50,19 @@ function Main_000({ navigation }) {
             <AlarmIcon />
           </View>
           <View style={styles.challengeBannerContainer}>
-            <Text>챌린지 배너</Text>
+            <ImageBackground
+              source={{ uri: challengeImageUri }}
+              style={styles.challengeBannerContainer}
+            >
+              <Text>챌린지 배너</Text>
+            </ImageBackground>
           </View>
           <View style={styles.challengeBannerIndicator}></View>
           <View style={styles.adBannerContainer}>
-            <Text>광고 배너</Text>
+            <Image
+              source={{ uri: adImageUri }}
+              style={styles.adBannerContainer}
+            />
           </View>
           <View style={styles.savingSectionContainer}>
             <Text>절약 섹션</Text>

@@ -10,9 +10,10 @@ class User {
     passwordErrorCount,
     account,
     challengeIds,
-    coupons,
+    couponIds,
     price,
     shortIds,
+    valueIds,
     archiveIds,
     activated,
     marketing
@@ -27,9 +28,10 @@ class User {
     this.passwordErrorCount = passwordErrorCount;
     this.account = account;
     this.challengeIds = challengeIds;
-    this.coupons = coupons;
+    this.couponIds = couponIds;
     this.price = price;
     this.shortIds = shortIds;
+    this.valueIds = valueIds;
     this.archiveIds = archiveIds;
     this.activated = activated;
     this.marketing = marketing;

@@ -12,7 +12,7 @@ import Help from "../models/help";
 export const users = [
   new User(
     "Paul1",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/profile1.jpeg?raw=true",
     "010-1234-5678",
     "홍길동",
     "1999-02-05",
@@ -31,7 +31,7 @@ export const users = [
   ),
   new User(
     "Paul2",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/profile2.jpg?raw=true",
     "010-1234-5679",
     "홍길서",
     "1998-02-05",
@@ -50,7 +50,7 @@ export const users = [
   ),
   new User(
     "Paul3",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/profile3.png?raw=true",
     "010-1234-5670",
     "홍길남",
     "1997-02-05",
@@ -69,7 +69,7 @@ export const users = [
   ),
   new User(
     "Paul4",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/profile4.png?raw=true",
     "010-1234-5671",
     "홍길북",
     "1996-02-05",
@@ -88,7 +88,7 @@ export const users = [
   ),
   new User(
     "Paul5",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/profile5.jpg?raw=true",
     "010-1234-5672",
     "홍길중",
     "1995-02-05",
@@ -111,50 +111,65 @@ export const challenges = [
   new Challenge(
     "배달팁 아끼기",
     "배달말고 포장, 배달팁 아끼기!",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/challengeImage1.png?raw=true",
     [
       "배달말고 포장해서, 배달팁도 아끼고 건강도 챙기기!",
       "칼로리 높은 배달음식도 먹을텐데, 조금 걸어두는 편이 좋지 않겠어요?",
     ],
     "2023-01-01",
     "2023-02-28",
-    [],
+    [
+      "-NOcTHuPMea5OLbyK2k0",
+      "-NOcTHudLIXBMPezagmn",
+      "-NOcTHusucX0NEVnjC0x",
+      "-NOcTHv4850d_iGuGidE",
+    ],
     { min: 2000, max: 4000 },
     2
   ),
   new Challenge(
     "커피값 아끼기",
     "그 커피 꼭 사야 해?",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/challengeImage2.png?raw=true",
     [
       "배달말고 포장해서, 배달팁도 아끼고 건강도 챙기기!",
       "칼로리 높은 배달음식도 먹을텐데, 조금 걸어두는 편이 좋지 않겠어요?",
     ],
     "2023-01-01",
     "2023-02-28",
-    [],
+    ["-NOcTHuPMea5OLbyK2k0", "-NOcTHusucX0NEVnjC0x", "-NOcTHv4850d_iGuGidE"],
     { min: 3000, max: 5000 },
     3
   ),
   new Challenge(
     "택시비 아끼기",
     "걸어서 갈 수 있잖아?",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/challengeImage3.png?raw=true",
     [
       "배달말고 포장해서, 배달팁도 아끼고 건강도 챙기기!",
       "칼로리 높은 배달음식도 먹을텐데, 조금 걸어두는 편이 좋지 않겠어요?",
     ],
     "2023-01-01",
     "2023-02-28",
-    [],
+    ["-NOcTHuPMea5OLbyK2k0", "-NOcTHudLIXBMPezagmn"],
     { min: 3000, max: 6000 },
     3
   ),
 ];
 
 export const challengeLogs = [
-  new ChallengeLog("", "", 4500, "2023-02-04"),
-  new ChallengeLog("", "", 3000, "2023-02-03"),
+  new ChallengeLog(
+    "-NOcWPoCf-dxmNWSC42r",
+    "-NOcTHuPMea5OLbyK2k0",
+    4500,
+    "2023-02-04"
+  ),
+  new ChallengeLog(
+    "-NOcWPoDteSMlEcLb2SL",
+    "-NOcTHuPMea5OLbyK2k0",
+    3000,
+    "2023-02-03"
+  ),
 ];
 
 export const values = [
@@ -163,7 +178,7 @@ export const values = [
     ["오운완", "갓생", "헬린이"],
     100,
     "https://youtu.be/0gY_z7fqPjs",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/valueBackground1.png?raw=true",
     { original: 99000, sale: 79000 },
     [
       "정기회의 회기는 100일을, 임시회의 회기는 30일을 초과할 수 없다.",
@@ -182,26 +197,47 @@ export const values = [
 ];
 
 export const coupons = [
-  new Coupon("", "레드맥스짐 3월 할인권", "1234", "2023-03-31"),
+  new Coupon(
+    "-NOcXWLxTvrw1VY5qhYq",
+    "레드맥스짐 3월 할인권",
+    "1234",
+    "2023-03-31"
+  ),
+  new Coupon(
+    "-NOcXWLxTvrw1VY5qhYq",
+    "레드맥스짐 2월 할인권",
+    "1234",
+    "2023-02-28"
+  ),
 ];
 export const couponLogs = [
-  new CouponLog("", "", "create", "2023-02-10"),
-  new CouponLog("", "", "use", "2023-02-10"),
+  new CouponLog(
+    "-NOcY-UF9Ph1t8QCguwc",
+    "-NOcTHuPMea5OLbyK2k0",
+    "create",
+    "2023-02-10"
+  ),
+  new CouponLog(
+    "-NOcY-UF9Ph1t8QCguwc",
+    "-NOcTHuPMea5OLbyK2k0",
+    "use",
+    "2023-02-19"
+  ),
 ];
 
-export const archives = [new Archive("SAVER", "")];
+export const archives = [new Archive("SAVER", ["-NOcTHuPMea5OLbyK2k0"])];
 
 export const shorts = [
   new Short(
     "https://youtu.be/0gY_z7fqPjs",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/shortImage1.png?raw=true",
     "고길동",
     "sav",
     "샘플 비디오1"
   ),
   new Short(
     "https://youtu.be/0gY_z7fqPjs",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/shortImage2.png?raw=true",
     "고등어",
     "edu",
     "샘플 비디오2"
@@ -210,21 +246,28 @@ export const shorts = [
 
 export const advertisements = [
   new Advertisement(
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg"
+    "https://github.com/Sebyeok/mivvAssets/blob/main/advertiseExample1.png?raw=true"
   ),
   new Advertisement(
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg"
+    "https://github.com/Sebyeok/mivvAssets/blob/main/advertiseExample2.png?raw=true"
   ),
 ];
 
 export const helps = [
   new Help(
-    "",
+    "-NOcTHuPMea5OLbyK2k0",
     "문의 샘플1",
     "문의 내용입니다.",
     "문의 답변입니다",
     "2023-02-10",
     "2023-02-11"
   ),
-  new Help("", "문의 샘플2", "문의 내용입니다.", "", "2023-02-11", ""),
+  new Help(
+    "-NOcTHuPMea5OLbyK2k0",
+    "문의 샘플2",
+    "문의 내용입니다.",
+    "",
+    "2023-02-11",
+    ""
+  ),
 ];

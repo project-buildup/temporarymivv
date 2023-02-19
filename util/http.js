@@ -1,5 +1,4 @@
 import axios from "axios";
-import User from "../models/user";
 
 const BACKEND_URL =
   "https://react-native-course-6fe6d-default-rtdb.firebaseio.com";
@@ -12,6 +11,11 @@ export async function storeData(type, data) {
 }
 
 export async function fetchData(type) {
+  const response = await axios.get(BACKEND_URL + "/" + type + ".json");
+
+  return response.data;
+}
+export async function fetchKeyData(type) {
   const response = await axios.get(BACKEND_URL + "/" + type + ".json");
   const keys = [];
 
@@ -35,7 +39,6 @@ export async function fetchData(type) {
   // }
   return keys;
 }
-
 // type에 해당하는 데이터 불러와서 키 값들을 콘솔에 출력하는 로직.
 // fetchHandler("users");
 

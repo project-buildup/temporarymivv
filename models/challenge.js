@@ -6,7 +6,7 @@ class Challenge {
     contents,
     startAt,
     endAt,
-    joinUserIds,
+    userIds,
     price,
     maxPerDay
   ) {
@@ -16,7 +16,7 @@ class Challenge {
     this.contents = contents;
     this.startAt = startAt;
     this.endAt = endAt;
-    this.joinUserIds = joinUserIds;
+    this.userIds = userIds;
     this.price = price;
     this.maxPerDay = maxPerDay;
   }

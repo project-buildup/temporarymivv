@@ -2,13 +2,16 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   accountLinkState,
   idStoreState,
   loginState,
   regFinishState,
   splashState,
+  userIdState,
+  usersState,
 } from "./data/atom";
 import ArchiveScreen from "./screens/ArchiveScreen";
 import ChallengeScreen from "./screens/ChallengeScreen";
@@ -20,6 +23,8 @@ import PWRegScreen from "./screens/PWRegScreen";
 import RegScreen from "./screens/RegScreen";
 import SplashScreen from "./screens/SplashScreen";
 import ValueScreen from "./screens/ValueScreen";
+import { fetchUsers } from "./util/executeFetch";
+import { fetchKeyData } from "./util/http";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -86,11 +91,11 @@ function AfterLogin() {
   );
 }
 
-function checkLogin(setIsSplash) {
-  setTimeout(() => {
-    setIsSplash(false);
-  }, 2000);
-}
+// function checkLogin(setIsSplash) {
+//   setTimeout(() => {
+//     setIsSplash(false);
+//   }, 2000);
+// }
 
 function InApp() {
   const [isSplash, setIsSplash] = useRecoilState(splashState); //splash화면 나타내기 위해 설정해놓음
@@ -98,8 +103,15 @@ function InApp() {
   const isLogined = useRecoilValue(loginState);
   const isRegFinished = useRecoilValue(regFinishState);
   const isAccountLinked = useRecoilValue(accountLinkState);
+  const [error, setError] = useState();
+  const setUserId = useSetRecoilState(userIdState);
+  const users = useRecoilValue(usersState);
 
-  checkLogin(setIsSplash);
+  // checkLogin(setIsSplash);
+
+  if (error) {
+    console.log(error);
+  }
 
   if (isSplash) {
     return <SplashScreen />;
@@ -132,6 +144,15 @@ function InApp() {
   ) {
     return <PWCheckScreen />;
   }
+  // if (
+  //   isIdStored &&
+  //   !isSplash &&
+  //   isLogined &&
+  //   isRegFinished &&
+  //   isAccountLinked
+  // ) {
+
+  // }
 
   return <AfterLogin />;
 }

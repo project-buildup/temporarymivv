@@ -4,7 +4,7 @@ class Value {
     hashtags,
     max,
     video,
-    thumbnail,
+    image,
     price,
     why,
     pricetag,
@@ -15,7 +15,7 @@ class Value {
     this.hashtags = hashtags;
     this.max = max;
     this.video = video;
-    this.thumbnail = thumbnail;
+    this.image = image;
     this.price = price;
     this.why = why;
     this.pricetag = pricetag;
