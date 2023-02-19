@@ -9,7 +9,7 @@ import {
 import Constants from "expo-constants";
 import MivvLogo from "../components/MivvLogo";
 import CheckIcon from "../components/CheckIcon";
-function RedmitDoneScreen({ navigation }) {
+function RemitDoneScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.rootContainer}>
@@ -51,7 +51,7 @@ function RedmitDoneScreen({ navigation }) {
   );
 }
 
-export default RedmitDoneScreen;
+export default RemitDoneScreen;
 
 const styles = StyleSheet.create({
   root: {

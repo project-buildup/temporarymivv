@@ -2,7 +2,7 @@ import { View, Image, StyleSheet, Pressable } from "react-native";
 
 function BackIcon() {
   return (
-    <View style={styles.mivvContainer}>
+    <View style={styles.container}>
       <Image source={require("../assets/backIcon.png")} />
     </View>
   );
@@ -11,7 +11,7 @@ function BackIcon() {
 export default BackIcon;
 
 const styles = StyleSheet.create({
-  mivvContainer: {
+  container: {
     width: 11,
     height: 19,
     justifyContent: "center",

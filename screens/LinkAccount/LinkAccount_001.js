@@ -7,32 +7,26 @@ import {
   View,
 } from "react-native";
 import Constants from "expo-constants";
-import { useSetRecoilState } from "recoil";
-import { idStoreState } from "../../data/atom";
-
-function Reg_002({ navigation }) {
-  const setIsIdStored = useSetRecoilState(idStoreState);
+function LinkAccount_001({ navigation }) {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.rootContainer}>
         <View style={styles.container}>
-          <Text>본인인증</Text>
+          <Text>계좌 연결</Text>
           <View style={styles.buttonContainer}>
             <View style={styles.button}>
               <Button
-                title={"카카오 본인인증"}
+                title={"A 은행"}
                 onPress={() => {
                   navigation.goBack();
-                  setIsIdStored(true);
                 }}
               />
             </View>
             <View style={styles.button}>
               <Button
-                title={"토스 본인인증"}
+                title={"B 은행"}
                 onPress={() => {
                   navigation.goBack();
-                  setIsIdStored(true);
                 }}
               />
             </View>
@@ -42,7 +36,7 @@ function Reg_002({ navigation }) {
     </SafeAreaView>
   );
 }
-export default Reg_002;
+export default LinkAccount_001;
 
 const styles = StyleSheet.create({
   root: {

@@ -1,25 +1,24 @@
-import { Platform, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import Constants from "expo-constants";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ChList from "./Challenge/ChList";
+import ChInfo from "./Challenge/ChInfo";
+
+const Stack = createNativeStackNavigator();
 
 function ChallengeScreen() {
   return (
-    <SafeAreaView style={styles.root}>
-      <View style={styles.rootContainer}>
-        <Text>ChallengeScreen</Text>
-      </View>
-    </SafeAreaView>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ChList"
+        component={ChList}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ChInfo"
+        component={ChInfo}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
   );
 }
 
 export default ChallengeScreen;
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: "white",
-  },
-  rootContainer: {
-    flex: 1,
-    paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
-  },
-});

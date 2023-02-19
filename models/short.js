@@ -1,8 +1,9 @@
 class Short {
-  constructor(video, image, nickname, title) {
+  constructor(video, image, nickname, type, title) {
     this.video = video;
     this.image = image;
     this.nickname = nickname;
+    this.type = type;
     this.title = title;
   }
 }

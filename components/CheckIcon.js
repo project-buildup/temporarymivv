@@ -2,7 +2,7 @@ import { View, Image, StyleSheet, Pressable } from "react-native";
 
 function CheckIcon() {
   return (
-    <View style={styles.mivvContainer}>
+    <View style={styles.container}>
       <Image source={require("../assets/checkIcon.png")} />
     </View>
   );
@@ -11,7 +11,7 @@ function CheckIcon() {
 export default CheckIcon;
 
 const styles = StyleSheet.create({
-  mivvContainer: {
+  container: {
     width: 90,
     height: 90,
     justifyContent: "center",

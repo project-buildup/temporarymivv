@@ -1,6 +1,5 @@
 import {
   Button,
-  Modal,
   Platform,
   SafeAreaView,
   StyleSheet,

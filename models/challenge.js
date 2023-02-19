@@ -3,6 +3,7 @@ class Challenge {
     title,
     subtitle,
     image,
+    contents,
     startAt,
     endAt,
     joinUserIds,
@@ -12,6 +13,7 @@ class Challenge {
     this.title = title;
     this.subtitle = subtitle;
     this.image = image;
+    this.contents = contents;
     this.startAt = startAt;
     this.endAt = endAt;
     this.joinUserIds = joinUserIds;

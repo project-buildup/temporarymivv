@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Main_000 from "./Main/Main_000";
 import RemitScreen from "./RemitScreen";
-import RedmitDoneScreen from "./RemitDoneScreen";
+import RemitDoneScreen from "./RemitDoneScreen";
 import RankScreen from "./RankScreen";
+import ShortsScreen from "./ShortsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,12 +22,17 @@ function MainScreen() {
       />
       <Stack.Screen
         name="RemitDone"
-        component={RedmitDoneScreen}
+        component={RemitDoneScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Rank"
         component={RankScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Shorts"
+        component={ShortsScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
