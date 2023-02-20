@@ -9,6 +9,11 @@ import {
 import Constants from "expo-constants";
 import BackIcon from "../components/BackIcon";
 import AlarmIcon from "../components/AlarmIcon";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HelpStatus from "../components/HelpsStatus";
+import CustomerCenter from "../components/HelpComponents";
+
+const Stack = createNativeStackNavigator();
 
 function HelpScreen({ navigation }) {
   return (
@@ -28,6 +33,7 @@ function HelpScreen({ navigation }) {
           <AlarmIcon />
         </View>
       </View>
+      <HelpStatus />
     </SafeAreaView>
   );
 }
@@ -36,11 +42,10 @@ export default HelpScreen;
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
     backgroundColor: "white",
+    flex: 1,
   },
   rootContainer: {
-    flex: 1,
     paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
     alignItems: "center",
   },
