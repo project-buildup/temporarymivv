@@ -2,27 +2,27 @@ import { atom } from "recoil";
 
 export const splashState = atom({
   key: "splashState", //splash화면을 띄워야 하는가?
-  default: false, //기본 값 : true
+  default: true, //기본 값 : true
 });
 
 export const idStoreState = atom({
   key: "idStoreState", //기기에 id가 저장되어 있는가?
-  default: true, //기본 값 : false
+  default: false, //기본 값 : false
 });
 
 export const loginState = atom({
   key: "loginState", //로그인 하였는가?
-  default: true, //기본 값 : false
+  default: false, //기본 값 : false
 });
 
 export const regFinishState = atom({
   key: "regFinishState", // 회원가입을 마쳤는가?
-  default: true, //기본 값 : false
+  default: false, //기본 값 : false
 });
 
 export const accountLinkState = atom({
   key: "accountLinkState", // 계좌를 연결하였는가?
-  default: true, //기본 값 : false
+  default: false, //기본 값 : false
 });
 
 export const passwordState = atom({
@@ -32,7 +32,7 @@ export const passwordState = atom({
 
 export const loadingState = atom({
   key: "loadingState", // 서버에서 데이터 로딩 중인가?
-  default: false, // 기본 값 : null
+  default: false, // 기본 값 : false
 });
 //-----------------------------------------------------
 export const userIdState = atom({

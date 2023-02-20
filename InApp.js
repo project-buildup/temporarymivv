@@ -91,11 +91,11 @@ function AfterLogin() {
   );
 }
 
-// function checkLogin(setIsSplash) {
-//   setTimeout(() => {
-//     setIsSplash(false);
-//   }, 2000);
-// }
+function checkLogin(setIsSplash) {
+  setTimeout(() => {
+    setIsSplash(false);
+  }, 2000);
+}
 
 function InApp() {
   const [isSplash, setIsSplash] = useRecoilState(splashState); //splash화면 나타내기 위해 설정해놓음
@@ -107,7 +107,7 @@ function InApp() {
   const setUserId = useSetRecoilState(userIdState);
   const users = useRecoilValue(usersState);
 
-  // checkLogin(setIsSplash);
+  checkLogin(setIsSplash);
 
   if (error) {
     console.log(error);
