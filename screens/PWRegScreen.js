@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import PWReg_000 from "./PWReg/PWReg_000";
 import PWReg_001 from "./PWReg/PWReg_001";
 import PWReg_002 from "./PWReg/PWReg_002";
-
+import PWCheckScreen from "./PWCheckScreen";
 const Stack = createNativeStackNavigator();
 
 function PWRegScreen() {
@@ -28,6 +28,13 @@ function PWRegScreen() {
         <Stack.Screen
           name="PWReg_002"
           component={PWReg_002}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="PWCheckScreen"
+          component={PWCheckScreen}
           options={{
             headerShown: false,
           }}

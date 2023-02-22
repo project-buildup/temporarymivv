@@ -35,7 +35,7 @@ export default function HelpStatus() {
     <View>
       <View style={styles.wrapper}>{makes}</View>
       {where === 0 ? (
-        <CustomerCenter></CustomerCenter>
+        <CustomerCenter />
       ) : where === 1 ? (
         <MyQuestions />
       ) : (

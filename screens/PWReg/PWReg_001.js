@@ -1,46 +1,66 @@
+//수정사항
+//비밀번호 일치하는지 확인
+
 import {
-  Button,
   Platform,
   SafeAreaView,
   StyleSheet,
   Text,
-  TextInput,
   View,
+  Alert,
 } from "react-native";
 import Constants from "expo-constants";
-import { passwordState } from "../../data/atom";
 import { useSetRecoilState } from "recoil";
+import { passwordState } from "../../data/atom";
+import CustomNumberPad from "../../components/keypad";
+import { useState } from "react";
 
-function PWReg_001({ navigation }) {
+function PWReg_000({ navigation }) {
   const setPassword = useSetRecoilState(passwordState);
+  const [PW, setPW] = useState("");
+
+  const handleKeyPress = (key) => {
+    if (key === "<") {
+      setPW(PW.slice(0, -1));
+    } else if (PW.length < 5) {
+      setPW(PW + key);
+    } else {
+      setPW(PW + key);
+      console.log("check");
+      Alert.alert("경고", "입력하신 비밀번호가 다릅니다", [
+        {
+          text: "확인",
+          onPress: () => {
+            setPW("");
+            navigation.navigate("PWReg_002");
+          },
+        },
+      ]);
+    }
+  };
+  //////////////
 
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.rootContainer}>
-        <Text>PWReg_001</Text>
-        <Text>회원가입</Text>
-        <Text>계정 비밀번호를 재입력해주세요</Text>
-        <TextInput />
-        <Button
-          title="비밀번호 재설정"
-          onPress={() => {
-            navigation.replace("PWReg_000");
-          }}
-        />
-        <Button
-          title="next"
-          onPress={() => {
-            //비밀번호 세팅 API
-            setPassword(null); // 앱의 로컬 패스워드 값 초기화
-            navigation.replace("PWReg_002");
-          }}
-        />
+        <View style={{ marginTop: 45, marginLeft: 45 }}>
+          <Text style={{ fontSize: 22 }}>회원가입</Text>
+          <Text style={{ fontSize: 18, marginTop: 10 }}>
+            계정 비밀번호를 재입력해주세요
+          </Text>
+        </View>
       </View>
+      <CustomNumberPad
+        onKeyPress={handleKeyPress}
+        PW={PW}
+        text={"동일한 숫자는 3번 이상 반복할 수 없습니다."}
+        button={true}
+      />
     </SafeAreaView>
   );
 }
 
-export default PWReg_001;
+export default PWReg_000;
 
 const styles = StyleSheet.create({
   root: {

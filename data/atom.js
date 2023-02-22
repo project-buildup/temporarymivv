@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import User from "../models/user";
 
 export const splashState = atom({
   key: "splashState", //splash화면을 띄워야 하는가?
@@ -41,8 +42,26 @@ export const userIdState = atom({
 });
 //-----------------------------------------------------
 export const usersState = atom({
-  key: "usersState", // users table
-  default: null,
+  key: "usersState", // users table dummy data
+  default: new User(
+    "Paul1",
+    "https://raw.githubusercontent.com/Sebyeok/mivvAssets/main/profile1.jpeg",
+    "010-1234-5678",
+    "홍길동",
+    "1999-02-05",
+    "testemail1@projectbuildup.io",
+    "123456",
+    0,
+    { bank: "shinhan", account: "12345678910123" },
+    [],
+    [],
+    { total: 850000, thisMonth: { price: 80000, ranking: 1 } },
+    [],
+    [],
+    [],
+    true,
+    true
+  ),
 });
 
 export const challengesState = atom({
