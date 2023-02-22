@@ -2,17 +2,16 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   accountLinkState,
   idStoreState,
+  loadingState,
   loginState,
   regFinishState,
   splashState,
-  userIdState,
-  usersState,
 } from "./data/atom";
+import AfterLoginFetchScreen from "./screens/AfterLoginFetchScreen";
 import ArchiveScreen from "./screens/ArchiveScreen";
 import ChallengeScreen from "./screens/ChallengeScreen";
 import LinkAccountScreen from "./screens/LinkAccountScreen";
@@ -23,8 +22,6 @@ import PWRegScreen from "./screens/PWRegScreen";
 import RegScreen from "./screens/RegScreen";
 import SplashScreen from "./screens/SplashScreen";
 import ValueScreen from "./screens/ValueScreen";
-import { fetchUsers } from "./util/executeFetch";
-import { fetchKeyData } from "./util/http";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -91,68 +88,50 @@ function AfterLogin() {
   );
 }
 
-function checkLogin(setIsSplash) {
-  setTimeout(() => {
-    setIsSplash(false);
-  }, 2000);
-}
-
 function InApp() {
   const [isSplash, setIsSplash] = useRecoilState(splashState); //splash화면 나타내기 위해 설정해놓음
   const isIdStored = useRecoilValue(idStoreState); //false가 기본값
   const isLogined = useRecoilValue(loginState);
   const isRegFinished = useRecoilValue(regFinishState);
   const isAccountLinked = useRecoilValue(accountLinkState);
-  const [error, setError] = useState();
-  const setUserId = useSetRecoilState(userIdState);
-  const users = useRecoilValue(usersState);
-
-  checkLogin(setIsSplash);
-
-  if (error) {
-    console.log(error);
-  }
+  const isLoading = useRecoilValue(loadingState);
 
   if (isSplash) {
     return <SplashScreen />;
   }
 
-  if (!isIdStored && !isSplash) {
+  if (!isSplash && !isIdStored) {
     return <RegScreen />;
   }
 
-  if (isIdStored && !isSplash && !isLogined && !isRegFinished) {
+  if (!isSplash && isIdStored && !isRegFinished) {
     return <PWRegScreen />;
   }
 
-  if (
-    isIdStored &&
-    !isSplash &&
-    !isLogined &&
-    isRegFinished &&
-    !isAccountLinked
-  ) {
+  if (!isSplash && isIdStored && isRegFinished && !isAccountLinked) {
     return <LinkAccountScreen />;
   }
 
   if (
-    isIdStored &&
     !isSplash &&
-    !isLogined &&
+    isIdStored &&
     isRegFinished &&
-    isAccountLinked
+    isAccountLinked &&
+    !isLogined
   ) {
     return <PWCheckScreen />;
   }
-  // if (
-  //   isIdStored &&
-  //   !isSplash &&
-  //   isLogined &&
-  //   isRegFinished &&
-  //   isAccountLinked
-  // ) {
 
-  // }
+  if (
+    !isSplash &&
+    isIdStored &&
+    isRegFinished &&
+    isAccountLinked &&
+    isLogined &&
+    isLoading
+  ) {
+    return <AfterLoginFetchScreen />;
+  }
 
   return <AfterLogin />;
 }

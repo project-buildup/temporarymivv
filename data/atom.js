@@ -2,27 +2,27 @@ import { atom } from "recoil";
 
 export const splashState = atom({
   key: "splashState", //splash화면을 띄워야 하는가?
-  default: true, //기본 값 : true
+  default: false, //기본 값 : true
 });
 
 export const idStoreState = atom({
   key: "idStoreState", //기기에 id가 저장되어 있는가?
-  default: false, //기본 값 : false
+  default: true, //기본 값 : false
 });
 
 export const loginState = atom({
   key: "loginState", //로그인 하였는가?
-  default: false, //기본 값 : false
+  default: true, //기본 값 : false
 });
 
 export const regFinishState = atom({
   key: "regFinishState", // 회원가입을 마쳤는가?
-  default: false, //기본 값 : false
+  default: true, //기본 값 : false
 });
 
 export const accountLinkState = atom({
   key: "accountLinkState", // 계좌를 연결하였는가?
-  default: false, //기본 값 : false
+  default: true, //기본 값 : false
 });
 
 export const passwordState = atom({
@@ -32,60 +32,97 @@ export const passwordState = atom({
 
 export const loadingState = atom({
   key: "loadingState", // 서버에서 데이터 로딩 중인가?
-  default: false, // 기본 값 : false
+  default: true, // 기본 값 : false
 });
 //-----------------------------------------------------
 export const userIdState = atom({
   key: "userIdState", // 유저 키 저장소
-  default: null, // 기본 값 : null
+  default: [],
 });
+export const challengeIdState = atom({
+  key: "challengeIdState", // 챌린지 키 저장소
+  default: [],
+});
+export const challengeLogIdState = atom({
+  key: "challengeLogIdState", // 챌린지로그 키 저장소
+  default: [],
+});
+export const valueIdState = atom({
+  key: "valueIdState", // 가치소비 키 저장소
+  default: [],
+});
+export const couponIdState = atom({
+  key: "couponIdState", // 쿠폰 키 저장소
+  default: [],
+});
+export const couponLogIdState = atom({
+  key: "couponLogIdState", // 쿠폰로그 키 저장소
+  default: [],
+});
+export const archiveIdState = atom({
+  key: "archiveIdState", // 아카이브 키 저장소
+  default: [],
+});
+export const shortIdState = atom({
+  key: "shortIdState", // 쇼츠 키 저장소
+  default: [], //
+});
+export const advertisementIdState = atom({
+  key: "advertisementIdState", // 광고 키 저장소
+  default: null, //
+});
+export const helpIdState = atom({
+  key: "helpIdState", // 문의 내역 키 저장소`
+  default: null, //
+});
+
 //-----------------------------------------------------
-export const usersState = atom({
-  key: "usersState", // users table
-  default: null,
+export const userState = atom({
+  key: "userState", // users table
+  default: {},
 });
 
-export const challengesState = atom({
-  key: "challengesState", // challenges table
-  default: null,
+export const challengeState = atom({
+  key: "challengeState", // challenges table
+  default: {},
 });
 
-export const challengeLogsState = atom({
-  key: "challengeLogsState", // challengeLogs table
-  default: null,
+export const challengeLogState = atom({
+  key: "challengeLogState", // challengeLogs table
+  default: {},
 });
 
-export const valuesState = atom({
-  key: "valuesState", // values table
-  default: null,
+export const valueState = atom({
+  key: "valueState", // values table
+  default: {},
 });
 
-export const couponsState = atom({
-  key: "couponsState", // coupons table
-  default: null,
+export const couponState = atom({
+  key: "couponState", // coupons table
+  default: {},
 });
 
-export const couponLogsState = atom({
-  key: "couponLogsState", // couponLog table
-  default: null,
+export const couponLogState = atom({
+  key: "couponLogState", // couponLog table
+  default: {},
 });
 
-export const archivesState = atom({
-  key: "archivesState", // archives table
-  default: null,
+export const archiveState = atom({
+  key: "archiveState", // archives table
+  default: {},
 });
 
-export const shortsState = atom({
-  key: "shortsState", // shorts table
-  default: null,
+export const shortState = atom({
+  key: "shortState", // shorts table
+  default: {},
 });
 
-export const advertisementsState = atom({
+export const advertisementState = atom({
   key: "advertisementsState", // advertisements table
-  default: null,
+  default: {},
 });
 
-export const helpsState = atom({
-  key: "helpsState", // helps table
-  default: null,
+export const helpState = atom({
+  key: "helpState", // helps table
+  default: {},
 });
