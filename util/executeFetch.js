@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSetRecoilState } from "recoil";
 
 const BACKEND_URL =
   "https://react-native-course-6fe6d-default-rtdb.firebaseio.com";
 
-async function fetchKeyData(type) {
+export async function fetchIds(type, setter) {
   const response = await axios.get(BACKEND_URL + "/" + type + ".json");
   const keys = [];
 
@@ -13,31 +12,53 @@ async function fetchKeyData(type) {
     keys.push(key);
   }
 
-  return keys;
+  setter(keys);
 }
 
-async function fetchData(type) {
+export async function fetchDatas(type, setter) {
   const response = await axios.get(BACKEND_URL + "/" + type + ".json");
 
-  return response.data;
+  setter(response.data);
 }
 
-export async function fetchUsers(type, state) {
-  const setter = useSetRecoilState(state);
-  const [isLoading, setIsLoading] = useState(true);
-  const [temp, setTemp] = useState();
+export function fetchState(type, setter) {
+  async function fetchHandler(type) {
+    try {
+      const keys = await fetchKeyData(type);
+      const object = {};
+      for (const key of keys) {
+        const response = await fetchData(type + "/" + key);
+        object[key] = response;
+        console.log(object);
+        setter((oldData) => ({ ...oldData, ...object }));
+      }
+    } catch (error) {
+      console.log("Could not fetch!");
+    }
+  }
+  fetchHandler(type);
+}
+
+export function useFetchState(type) {
+  //from chatGPT
+  const [data, setData] = useState({});
 
   useEffect(() => {
-    async function getKeys(type) {
-      setIsLoading(true);
+    async function fetchData() {
       try {
-        const response = await fetchData(type + "/" + keys[0]);
-        setter(response);
+        const keys = await fetchKeyData(type);
+        const newData = {};
+        for (const key of keys) {
+          const response = await fetchData(type + "/" + key);
+          newData[key] = response;
+        }
+        setData((oldData) => ({ ...oldData, ...newData }));
       } catch (error) {
-        console.log("Could not fetch keys!");
+        console.log("Could not fetch!");
       }
-      setIsLoading(false);
     }
-    getKeys(type);
-  }, []);
+    fetchData();
+  }, [type]);
+
+  return data;
 }

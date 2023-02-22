@@ -1,3 +1,5 @@
+/*
+
 import axios from "axios";
 
 const BACKEND_URL =
@@ -54,3 +56,5 @@ export function updateData(type, id, data) {
 export function deleteData(type, id) {
   return axios.delete(BACKEND_URL + `/${type}/${id}.json`);
 }
+
+*/

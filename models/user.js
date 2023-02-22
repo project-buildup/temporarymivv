@@ -12,6 +12,7 @@ class User {
     challengeIds,
     couponIds,
     price,
+    ranking,
     shortIds,
     valueIds,
     archiveIds,
@@ -30,6 +31,7 @@ class User {
     this.challengeIds = challengeIds;
     this.couponIds = couponIds;
     this.price = price;
+    this.ranking = ranking;
     this.shortIds = shortIds;
     this.valueIds = valueIds;
     this.archiveIds = archiveIds;

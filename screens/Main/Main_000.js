@@ -11,34 +11,30 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import { Dialog } from "react-native-simple-dialogs";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MivvLogo from "../../components/MivvLogo";
 import AlarmIcon from "../../components/AlarmIcon";
 import ChallengeItem from "../../components/ChallengeItem";
-import { fetchData, fetchKeyData } from "../../util/http";
+import { useRecoilValue } from "recoil";
+import {
+  advertisementIdState,
+  advertisementState,
+  challengeIdState,
+  challengeState,
+  userIdState,
+  userState,
+} from "../../data/atom";
 
 function Main_000({ navigation }) {
   const [popUpVisible, setPopUpVisible] = useState(false);
-  const [adImageUri, setAdImageUri] = useState();
-  const [challengeImageUri, setChallengeImageUri] = useState();
-
-  useEffect(() => {
-    async function getImage(type) {
-      try {
-        const keys = await fetchKeyData(type);
-        const image = await fetchData(type + "/" + keys[0] + "/image");
-        if (type === "advertisements") {
-          setAdImageUri(image);
-        } else {
-          setChallengeImageUri(image);
-        }
-      } catch (error) {
-        console.log("Could not fetch keys!");
-      }
-    }
-    getImage("advertisements");
-    getImage("challenges");
-  }, []);
+  const userIds = useRecoilValue(userIdState);
+  const users = useRecoilValue(userState);
+  const advertisementIds = useRecoilValue(advertisementIdState);
+  const challengeIds = useRecoilValue(challengeIdState);
+  const advertisements = useRecoilValue(advertisementState);
+  const challenges = useRecoilValue(challengeState);
+  const adImageUri = advertisements[advertisementIds[0]].image;
+  const challengeImageUri = challenges[challengeIds[0]].image;
 
   return (
     <SafeAreaView style={styles.root}>
