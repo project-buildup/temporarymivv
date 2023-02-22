@@ -3,6 +3,7 @@
 //user에 업데이트
 //이미지 사용자한테서 받아오기
 //이미지 밑에 동그라미 넣기
+//사용자 정보 받아오기
 
 import {
   Platform,
@@ -18,12 +19,31 @@ import {
 import Icon from "react-native-vector-icons/Feather";
 import Constants from "expo-constants";
 import MivvLogo from "../../components/MivvLogo";
-import { useRecoilState, selector } from "recoil";
 import { usersState } from "../../data/atom";
 import { useState } from "react";
+import User from "../../models/user";
 
 function Mypage_000({ navigation }) {
-  const [user, setUser] = useRecoilState(usersState);
+  const user = new User(
+    "Paul1",
+    "https://github.com/Sebyeok/mivvAssets/blob/main/profile1.jpeg?raw=true",
+    "010-1234-5678",
+    "홍길동",
+    "1999-02-05",
+    "testemail1@projectbuildup.io",
+    "123456",
+    0,
+    { bank: "shinhan", account: "12345678910123" },
+    [],
+    [],
+    { total: 850000, thisMonthTotal: 80000 },
+    1,
+    [],
+    [],
+    [],
+    true,
+    true
+  );
   const url = user.image;
   const [modal, setModal] = useState(false);
 
@@ -86,7 +106,7 @@ function Mypage_000({ navigation }) {
                   marginRight: 56,
                 }}
               >
-                {user.name} 님
+                {name} 님
               </Text>
               <Pressable
                 onPress={() => {
@@ -120,6 +140,7 @@ function Mypage_000({ navigation }) {
           <Text>앱 설정</Text>
         </Pressable>
       </View>
+
       {modal ? (
         <View>
           <Modal animationType="fade" transparent={true} visible={true}>

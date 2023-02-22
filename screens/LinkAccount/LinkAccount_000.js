@@ -53,7 +53,7 @@ function LinkAccount_000({ navigation }) {
       <Pressable
         onPress={() => {
           navigation.navigate("LinkAccount_001");
-          setInput("aaa");
+          setInput("A 은행");
         }}
         style={{ alignItems: "center" }}
       >
