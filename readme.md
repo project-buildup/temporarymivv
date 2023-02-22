@@ -5,3 +5,4 @@
 - (2023.2.20)더미데이터 firebase에 모두 restore.
 - (2023.2.20)더미데이터 firebase에서 불러와서 atom에 저장하는 작업 해야함.
 - (2023.2.22)더미데이터 firebase에서 불러와서 atom에 저장하는 작업 완료.
+- (2023.2.23)MainScreen Publishing 완료.
