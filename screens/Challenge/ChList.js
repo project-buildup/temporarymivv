@@ -1,4 +1,5 @@
 import {
+  Image,
   Platform,
   Pressable,
   SafeAreaView,
@@ -10,8 +11,48 @@ import {
 import Constants from "expo-constants";
 import MivvLogo from "../../components/MivvLogo";
 import AlarmIcon from "../../components/AlarmIcon";
+import ChallengeBanner from "../../components/ChallengeBanner";
+import { useRecoilValue } from "recoil";
+import { challengeIdState, challengeState } from "../../data/atom";
+import { useState } from "react";
+import ChallengeListItem from "../../components/ChallengeListItem";
 
 function ChList({ navigation }) {
+  const [isUp, setIsUp] = useState(true);
+  const challengeIds = useRecoilValue(challengeIdState);
+  const challenges = useRecoilValue(challengeState);
+
+  const imageUri = challenges[challengeIds[0]].image;
+  const subtitle = challenges[challengeIds[0]].subtitle;
+  const title = challenges[challengeIds[0]].title;
+  const min = challenges[challengeIds[0]].price.min;
+  const max = challenges[challengeIds[0]].price.max;
+  const num = challenges[challengeIds[0]].userIds.length;
+  const endAt = challenges[challengeIds[0]].endAt;
+
+  const challengeListItems = [];
+
+  challengeIds.map((id) => {
+    challengeListItems.push(
+      <Pressable
+        key={id}
+        onPress={() => {
+          navigation.navigate("ChInfo");
+        }}
+      >
+        <ChallengeListItem
+          imageUri={challenges[id].image}
+          subtitle={challenges[id].subtitle}
+          title={challenges[id].title}
+          min={challenges[id].price.min}
+          max={challenges[id].price.max}
+          num={challenges[id].userIds.length}
+          endAt={challenges[id].endAt}
+        />
+      </Pressable>
+    );
+  });
+
   return (
     <SafeAreaView style={styles.root}>
       <ScrollView>
@@ -22,49 +63,67 @@ function ChList({ navigation }) {
             <AlarmIcon />
           </View>
           <View style={styles.challengeRecommandContainer}>
-            <Text>챌린지 추천 배너</Text>
+            <Text
+              style={{
+                color: "#ECECEC",
+                fontFamily: "KoPubWorldDotum700",
+                fontSize: 15,
+              }}
+            >
+              이런 챌린지는 어때요?
+            </Text>
+            <Text
+              style={{
+                color: "#ECECEC",
+                fontFamily: "KoPubWorldDotum700",
+                fontSize: 15,
+              }}
+            >
+              오늘의 추천 챌린지
+            </Text>
           </View>
           <View style={styles.challengeBannerContainer}>
-            <Text>챌린지 배너</Text>
+            <ChallengeBanner
+              imageUri={imageUri}
+              subtitle={subtitle}
+              title={title}
+              min={min}
+              max={max}
+              num={num}
+              endAt={endAt}
+              isArrow={false}
+            />
           </View>
           <View style={styles.challengeFilterContainer}>
             <View style={styles.challengeFilterTitle}>
-              <Text>챌린지 필터 제목</Text>
+              <Text
+                style={{
+                  color: "#ECECEC",
+                  fontFamily: "KoPubWorldDotum700",
+                  fontSize: 15,
+                }}
+              >
+                참여자 수
+              </Text>
             </View>
-            <View style={styles.challengeFilterButtonContainer}>
-              <Text>정렬</Text>
-            </View>
+            <Pressable
+              style={styles.challengeFilterButtonContainer}
+              onPress={() => setIsUp(!isUp)}
+            >
+              <Image
+                style={{
+                  width: 15,
+                  height: 10,
+                }}
+                source={
+                  isUp
+                    ? require("../../assets/whiteUpIcon.png")
+                    : require("../../assets/whiteDownIcon.png")
+                }
+              />
+            </Pressable>
           </View>
-          <Pressable
-            style={styles.container}
-            onPress={() => {
-              navigation.navigate("ChInfo");
-            }}
-          >
-            <View style={styles.challenge}>
-              <Text>챌린지</Text>
-            </View>
-          </Pressable>
-          <Pressable
-            style={styles.container}
-            onPress={() => {
-              navigation.navigate("ChInfo");
-            }}
-          >
-            <View style={styles.challenge}>
-              <Text>챌린지</Text>
-            </View>
-          </Pressable>
-          <Pressable
-            style={styles.container}
-            onPress={() => {
-              navigation.navigate("ChInfo");
-            }}
-          >
-            <View style={styles.challenge}>
-              <Text>챌린지</Text>
-            </View>
-          </Pressable>
+          {challengeListItems.map((item) => item)}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -97,12 +156,14 @@ const styles = StyleSheet.create({
     width: 315,
     height: 70,
     marginTop: 20,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#0047CF",
     borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
   challengeBannerContainer: {
     width: 315,
-    height: 120,
+    height: 160,
     marginTop: 20,
     backgroundColor: "#f0f0f0",
     borderRadius: 20,
@@ -111,7 +172,6 @@ const styles = StyleSheet.create({
     width: 315,
     height: 37,
     margin: 15,
-    backgroundColor: "#f0f0f0",
     borderRadius: 15,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -119,14 +179,18 @@ const styles = StyleSheet.create({
   challengeFilterTitle: {
     width: 270,
     height: 37,
-    backgroundColor: "#c0c0c0",
+    backgroundColor: "#292929",
     borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
   },
   challengeFilterButtonContainer: {
     width: 39,
     height: 37,
-    backgroundColor: "#c0c0c0",
+    backgroundColor: "#292929",
     borderRadius: 29,
+    alignItems: "center",
+    justifyContent: "center",
   },
   challenge: {
     width: 315,

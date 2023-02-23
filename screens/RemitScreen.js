@@ -111,7 +111,6 @@ const styles = StyleSheet.create({
   },
   rootContainer: {
     flex: 1,
-    paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
     alignItems: "center",
   },
   logoContainer: {

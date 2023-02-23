@@ -86,7 +86,7 @@ function RankScreen({ navigation }) {
               height: 50,
               borderRadius: 25,
               margin: 15,
-              backgroundColor: "#f0f0f0",
+              backgroundColor: "#281F1F",
             }}
             source={{ uri: users[firstId].image }}
           />
