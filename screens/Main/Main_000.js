@@ -142,9 +142,8 @@ function Main_000({ navigation }) {
   //참여하고 있는 챌린지가 있는 경우
   users[userIds[0]].challengeIds?.map((id) =>
     mychallenges.push(
-      <View style={{ margin: 7 }}>
+      <View key={id} style={{ margin: 7 }}>
         <ChallengeItem
-          key={id}
           imageUri={challenges[id].image}
           title={challenges[id].title}
           minPrice={challenges[id].price.min}
