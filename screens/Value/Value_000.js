@@ -11,6 +11,8 @@ import {
 import { Dialog } from "react-native-simple-dialogs";
 import { useRecoilValue } from "recoil";
 import {
+  advertisementIdState,
+  advertisementState,
   userIdState,
   userState,
   valueIdState,
@@ -21,6 +23,9 @@ function Value_000({ navigation }) {
 
   const valueIds = useRecoilValue(valueIdState);
   const values = useRecoilValue(valueState);
+
+  const advertisementIds = useRecoilValue(advertisementIdState);
+  const advertisements = useRecoilValue(advertisementState);
 
   return (
     <View style={styles.root}>
@@ -274,9 +279,10 @@ function Value_000({ navigation }) {
               </View>
             </ScrollView>
           </View>
-          <View style={styles.adBannerContainer}>
-            <Text>광고 배너</Text>
-          </View>
+          <Image
+            style={styles.adBannerContainer}
+            source={{ uri: advertisements[advertisementIds[0]].image }}
+          />
         </View>
       </ScrollView>
       <Dialog
@@ -285,14 +291,39 @@ function Value_000({ navigation }) {
           setPopUpVisible(false);
         }}
       >
-        <Text>아직 발급 기간이 아니에요!</Text>
+        <Text
+          style={{
+            fontFamily: "KoPubWorldDotum700",
+            fontSize: 16,
+            marginVertical: 24,
+          }}
+        >
+          아직 발급 기간이 아니에요!
+        </Text>
         <Pressable
-          style={{}}
+          style={{
+            width: 310,
+            height: 36,
+            borderRadius: 13,
+            backgroundColor: "#0047CF",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
           onPress={() => {
             setPopUpVisible(false);
             navigation.navigate("Coupon_000");
           }}
-        ></Pressable>
+        >
+          <Text
+            style={{
+              color: "#f0f0f0",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 16,
+            }}
+          >
+            확인
+          </Text>
+        </Pressable>
       </Dialog>
     </View>
   );

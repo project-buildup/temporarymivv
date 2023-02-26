@@ -8,3 +8,4 @@
 - (2023.2.23)MainScreen Publishing 완료.
 - (2023.2.23)Remit, RemitDone, Rank 스크린 완료. (특이사항 : RankScreen은 백엔드API가 필요하여 하드코딩 하였음.)
 - (2023.2.24)ChInfo, ChList 스크린 완료.
+- (2023.2.26)Value, RCDetail 스크린 완료.
