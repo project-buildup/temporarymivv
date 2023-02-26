@@ -32,7 +32,7 @@ export const passwordState = atom({
 
 export const loadingState = atom({
   key: "loadingState", // 서버에서 데이터 로딩 중인가?
-  default: true, // 기본 값 : false
+  default: true, // 기본 값 : true
 });
 //-----------------------------------------------------
 export const userIdState = atom({

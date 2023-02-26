@@ -1,4 +1,6 @@
+import { useState } from "react";
 import {
+  Image,
   ImageBackground,
   Pressable,
   ScrollView,
@@ -6,43 +8,239 @@ import {
   Text,
   View,
 } from "react-native";
+import { Dialog } from "react-native-simple-dialogs";
+import { useRecoilValue } from "recoil";
+import {
+  userIdState,
+  userState,
+  valueIdState,
+  valueState,
+} from "../../data/atom";
 function Value_000({ navigation }) {
+  const [popUpVisible, setPopUpVisible] = useState(false);
+
+  const valueIds = useRecoilValue(valueIdState);
+  const values = useRecoilValue(valueState);
+
   return (
     <View style={styles.root}>
       <ScrollView bounces={false}>
         <ImageBackground
-          source={require("../../assets/valueBackground.png")}
-          resizeMode="contain"
+          source={{ uri: values[valueIds[0]].image }}
+          resizeMode="stretch"
           style={styles.background}
         ></ImageBackground>
         <View style={styles.rootContainer}>
           <View style={styles.couponContainer}>
             <View style={styles.couponTextBox}>
-              <Text style={styles.textStyle}>레드 맥스 짐</Text>
-              <Text style={styles.textStyle}>#오운완</Text>
-              <Text style={styles.textStyle}>#갓생</Text>
-              <Text style={styles.textStyle}>#헬린이</Text>
-            </View>
-            <Pressable style={styles.playButtonContainer}>
-              <Text>재생하기</Text>
-            </Pressable>
-            <View style={styles.couponBox}>
-              <Pressable
-                style={styles.moreButtonContainer}
-                onPress={() => {
-                  navigation.navigate("RCDetail");
+              <Text
+                style={{
+                  color: "#ECECEC",
+                  fontFamily: "KoPubWorldDotum700",
+                  fontSize: 26,
                 }}
               >
-                <Text style={styles.textStyle}>더 알아보기</Text>
-              </Pressable>
+                {values[valueIds[0]].title}
+              </Text>
+              <Text
+                style={{
+                  color: "#ECECEC",
+                  fontFamily: "KoPubWorldDotum700",
+                  fontSize: 12,
+                  marginTop: 4,
+                }}
+              >
+                #{values[valueIds[0]].hashtags[0]}
+              </Text>
+              <Text
+                style={{
+                  color: "#ECECEC",
+                  fontFamily: "KoPubWorldDotum700",
+                  fontSize: 12,
+                }}
+              >
+                #{values[valueIds[0]].hashtags[1]}
+              </Text>
+              <Text
+                style={{
+                  color: "#ECECEC",
+                  fontFamily: "KoPubWorldDotum700",
+                  fontSize: 12,
+                }}
+              >
+                #{values[valueIds[0]].hashtags[2]}
+              </Text>
+            </View>
+            <Pressable style={styles.playButtonContainer}>
+              <Text
+                style={{
+                  fontFamily: "KoPubWorldDotum700",
+                  fontSize: 11,
+                }}
+              >
+                재생하기
+              </Text>
+            </Pressable>
+            <View style={styles.couponBox}>
+              <Text
+                style={{
+                  fontFamily: "KoPubWorldDotum700",
+                  fontSize: 20,
+                  marginTop: 18,
+                  marginLeft: 21,
+                }}
+              >
+                오직 MIVV에서
+              </Text>
+              <View style={{ paddingLeft: 70, marginVertical: 25 }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "#8A8A8A",
+                      fontFamily: "KoPubWorldDotum700",
+                      fontSize: 10,
+                      marginRight: 5,
+                    }}
+                  >
+                    정상가
+                  </Text>
+                  <Text
+                    style={{
+                      color: "#8A8A8A",
+                      fontFamily: "KoPubWorldDotum700",
+                      fontSize: 10,
+                      textDecorationLine: "line-through",
+                    }}
+                  >
+                    {values[valueIds[0]].price.original.toLocaleString("ko-KR")}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    height: 30,
+                    flexDirection: "row",
+                    alignItems: "flex-end",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontFamily: "KoPubWorldDotum700",
+                      fontSize: 22,
+                      marginRight: 5,
+                    }}
+                  >
+                    {values[valueIds[0]].price.sale.toLocaleString("ko-KR")}
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: "KoPubWorldDotum700",
+                      fontSize: 15,
+                      marginRight: 5,
+                    }}
+                  >
+                    원
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: "KoPubWorldDotum700",
+                      fontSize: 11,
+                    }}
+                  >
+                    ({values[valueIds[0]].pricetag})
+                  </Text>
+                </View>
+              </View>
+              <View style={{ marginLeft: 36 }}>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <Image
+                    style={{ width: 20, height: 20 }}
+                    source={require("../../assets/redCheckIcon.png")}
+                  />
+                  <Text
+                    style={{
+                      fontFamily: "KoPubWorldDotum700",
+                      fontSize: 13,
+                      marginLeft: 6,
+                    }}
+                  >
+                    {values[valueIds[0]].summary[0]}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    marginVertical: 5,
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Image
+                    style={{ width: 20, height: 20 }}
+                    source={require("../../assets/redCheckIcon.png")}
+                  />
+                  <Text
+                    style={{
+                      fontFamily: "KoPubWorldDotum700",
+                      fontSize: 13,
+                      marginLeft: 6,
+                    }}
+                  >
+                    {values[valueIds[0]].summary[1]}
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <Image
+                    style={{ width: 20, height: 20 }}
+                    source={require("../../assets/redCheckIcon.png")}
+                  />
+                  <Text
+                    style={{
+                      fontFamily: "KoPubWorldDotum700",
+                      fontSize: 13,
+                      marginLeft: 6,
+                    }}
+                  >
+                    {values[valueIds[0]].summary[2]}
+                  </Text>
+                </View>
+              </View>
+              <View style={{ alignItems: "center" }}>
+                <Pressable
+                  style={styles.moreButtonContainer}
+                  onPress={() => {
+                    navigation.navigate("RCDetail");
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "#ffffff",
+                      fontFamily: "KoPubWorldDotum700",
+                      fontSize: 10,
+                    }}
+                  >
+                    더 알아보기
+                  </Text>
+                </Pressable>
+              </View>
             </View>
             <Pressable
               style={styles.couponButtonContainer}
               onPress={() => {
-                navigation.navigate("Coupon_000");
+                setPopUpVisible(true);
               }}
             >
-              <Text style={styles.textStyle}>소비 쿠폰 발급하기</Text>
+              <Text
+                style={{
+                  color: "#ECECEC",
+                  fontFamily: "KoPubWorldDotum700",
+                  fontSize: 20,
+                }}
+              >
+                소비 쿠폰 발급하기
+              </Text>
             </Pressable>
           </View>
           <View style={styles.shortsContainer}>
@@ -81,6 +279,21 @@ function Value_000({ navigation }) {
           </View>
         </View>
       </ScrollView>
+      <Dialog
+        visible={popUpVisible}
+        onTouchOutside={() => {
+          setPopUpVisible(false);
+        }}
+      >
+        <Text>아직 발급 기간이 아니에요!</Text>
+        <Pressable
+          style={{}}
+          onPress={() => {
+            setPopUpVisible(false);
+            navigation.navigate("Coupon_000");
+          }}
+        ></Pressable>
+      </Dialog>
     </View>
   );
 }
@@ -113,10 +326,8 @@ const styles = StyleSheet.create({
   },
   couponTextBox: {
     width: "100%",
-    padding: 40,
-  },
-  textStyle: {
-    color: "#ffffff",
+    paddingTop: 66,
+    paddingLeft: 35,
   },
   playButtonContainer: {
     width: 290,
@@ -125,17 +336,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "white",
     borderRadius: 4,
+    marginTop: 28,
   },
   couponBox: {
     width: 305,
-    height: 305,
-    alignItems: "center",
+    paddingBottom: 13,
     backgroundColor: "white",
     borderRadius: 15,
-    shadowColor: "black",
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 1, height: 1 },
     margin: 30,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   moreButtonContainer: {
     width: 280,
