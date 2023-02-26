@@ -50,6 +50,8 @@ function AfterLoginFetchScreen() {
   const setHelps = useSetRecoilState(helpState);
 
   useEffect(() => {
+    setIsLoading(true);
+
     async function fetchData() {
       await fetchIds("users", setUserIds);
       await fetchIds("challenges", setChallengeIds);
@@ -73,6 +75,7 @@ function AfterLoginFetchScreen() {
       await fetchDatas("helps", setHelps);
       setIsLoading(false);
     }
+
     fetchData();
   }, []);
   return <LoadingOverlay />;

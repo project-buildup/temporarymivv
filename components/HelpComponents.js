@@ -1,7 +1,8 @@
 //수정사항
-//클릭시 설명 페이지 이동
+//클릭시 설명 페이지 이동 - notion update 아직
 //질문 서버로 보내기
-//>로고 위치 제대로
+//문의내역 가져오기 - 이미지 업데이트 아직
+
 import {
   StyleSheet,
   View,
@@ -13,6 +14,8 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { helpIdState, userIdState, helpState } from "../data/atom";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 
 export function CustomerCenter() {
   const navigation = useNavigation();
@@ -26,12 +29,10 @@ export function CustomerCenter() {
           console.log("1");
         }}
       >
-        <Text style={{ fontSize: 16, color: "#808080" }}>
-          개인정보 변경 문의
-        </Text>
-        <Text style={{ fontSize: 16, color: "#888888", marginLeft: 42.16 }}>
-          {">"}
-        </Text>
+        <View style={styles.displayrow}>
+          <Text style={styles.bigFont}>개인정보 변경 문의</Text>
+          <Text style={styles.font}>{">"}</Text>
+        </View>
       </Pressable>
       <Pressable
         style={styles.smallpresstext}
@@ -39,12 +40,10 @@ export function CustomerCenter() {
           console.log("2");
         }}
       >
-        <Text style={{ fontSize: 16, color: "#808080" }}>
-          개인정보 변경 문의
-        </Text>
-        <Text style={{ fontSize: 16, color: "#888888", marginLeft: 42.16 }}>
-          {">"}
-        </Text>
+        <View style={styles.displayrow}>
+          <Text style={styles.bigFont}>개인정보 변경 문의</Text>
+          <Text style={styles.font}>{">"}</Text>
+        </View>
       </Pressable>
       <Pressable
         style={styles.smallpresstext}
@@ -52,12 +51,10 @@ export function CustomerCenter() {
           console.log("3");
         }}
       >
-        <Text style={{ fontSize: 16, color: "#808080" }}>
-          개인정보 변경 문의
-        </Text>
-        <Text style={{ fontSize: 16, color: "#888888", marginLeft: 42.16 }}>
-          {">"}
-        </Text>
+        <View style={styles.displayrow}>
+          <Text style={styles.bigFont}>개인정보 변경 문의</Text>
+          <Text style={styles.font}>{">"}</Text>
+        </View>
       </Pressable>
       <Pressable
         style={styles.smallpresstext}
@@ -65,12 +62,10 @@ export function CustomerCenter() {
           console.log("4");
         }}
       >
-        <Text style={{ fontSize: 16, color: "#808080" }}>
-          개인정보 변경 문의
-        </Text>
-        <Text style={{ fontSize: 16, color: "#888888", marginLeft: 42.16 }}>
-          {">"}
-        </Text>
+        <View style={styles.displayrow}>
+          <Text style={styles.bigFont}>개인정보 변경 문의</Text>
+          <Text style={styles.font}>{">"}</Text>
+        </View>
       </Pressable>
       <Pressable
         style={styles.smallpresstext}
@@ -78,12 +73,10 @@ export function CustomerCenter() {
           console.log("5");
         }}
       >
-        <Text style={{ fontSize: 16, color: "#808080" }}>
-          개인정보 변경 문의
-        </Text>
-        <Text style={{ fontSize: 16, color: "#888888", marginLeft: 42.16 }}>
-          {">"}
-        </Text>
+        <View style={styles.displayrow}>
+          <Text style={styles.bigFont}>개인정보 변경 문의</Text>
+          <Text style={styles.font}>{">"}</Text>
+        </View>
       </Pressable>
 
       <Pressable
@@ -92,10 +85,10 @@ export function CustomerCenter() {
           console.log("약관");
         }}
       >
-        <Text style={styles.text}>이용약관</Text>
-        <Text style={{ fontSize: 16, color: "#888888", marginLeft: 42.16 }}>
-          {">"}
-        </Text>
+        <View style={styles.displayrow}>
+          <Text style={styles.text}>이용약관</Text>
+          <Text style={styles.font}>{">"}</Text>
+        </View>
       </Pressable>
       <Pressable
         style={styles.presstext}
@@ -103,15 +96,15 @@ export function CustomerCenter() {
           console.log("방침");
         }}
       >
-        <Text style={styles.text}>개인정보 처리방침</Text>
-        <Text style={{ fontSize: 16, color: "#888888", marginLeft: 42.16 }}>
-          {">"}
-        </Text>
+        <View style={styles.displayrow}>
+          <Text style={styles.text}>개인정보 처리방침</Text>
+          <Text style={styles.font}>{">"}</Text>
+        </View>
       </Pressable>
     </View>
   );
 }
-
+///////////////////////////////// 내 문의내역 //////////////////////////////////////////////
 export function MyQuestions() {
   return (
     <View style={styles.questioncontainer}>
@@ -119,16 +112,26 @@ export function MyQuestions() {
     </View>
   );
 }
-
+/////////////////////////////////////// 문의하기 //////////////////////////////////////////////
 export function Asking() {
+  const userIds = useRecoilValue(userIdState);
+  const helpIds = useRecoilValue(helpIdState);
+  const helps = useRecoilValue(helpState);
   const [question, setQuestion] = useState();
+
+  const setContext = useSetRecoilState(helps[helpIds[0]]);
+  const setTime = useSetRecoilState(helps[helpIds[0]]);
+  const setHelpID = useSetRecoilState(helps[helpID[0]]);
+
   const handling = (newText) => {
     if (newText.length <= 1000) {
       setQuestion(newText);
     }
   };
   function sendQuestion() {
-    console.log(question);
+    setContext(question);
+    setTime(new Date());
+    setHelpID(userIds[0]);
   }
   return (
     <View>
@@ -192,4 +195,14 @@ const styles = StyleSheet.create({
     marginTop: 16,
     flexDirection: "row",
   },
+  displayrow: {
+    flexDirection: "row",
+    width: "80%",
+    justifyContent: "space-between",
+  },
+  font: {
+    fontSize: 16,
+    color: "#888888",
+  },
+  bigFont: { fontSize: 16, color: "#808080" },
 });

@@ -15,6 +15,7 @@ export default function HelpStatus() {
 
   let makes = name.map((value, index) => (
     <View
+      key={index}
       style={[
         styles.textwrapper,
         {

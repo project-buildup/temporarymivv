@@ -1,5 +1,5 @@
 //수정사항
-//비밀번호 확인
+//비밀번호 확인 - api 이용
 
 import {
   Platform,
@@ -14,17 +14,21 @@ import { useSetRecoilState } from "recoil";
 import { loginState } from "../data/atom";
 import { useState } from "react";
 import CustomNumberPad from "../components/keypad";
+import { userIdState, userState } from "../data/atom";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const PWCheckScreen = () => {
   const setIsLogined = useSetRecoilState(loginState);
   const [PW, setPW] = useState("");
   const [wrong, setWrong] = useState(0);
+
   const handleKeyPress = (key) => {
     if (key === "<") {
       setPW(PW.slice(0, -1));
     } else if (PW.length < 5) {
       setPW(PW + key);
     } else {
+      setIsLogined(true);
       setPW(PW + key);
       console.log("check");
       Alert.alert("경고", "입력하신 비밀번호가 다릅니다", [

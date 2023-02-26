@@ -1,6 +1,3 @@
-//수정사항
-//비밀번호 수정 버튼 눌럿을 때, PWRegScreen에서 이동이 안됢
-
 import {
   TouchableOpacity,
   Text,
@@ -169,7 +166,7 @@ const styles = StyleSheet.create({
   container: {
     width: width,
     backgroundColor: "#EFF1F5",
-    paddingTop: 30,
+    paddingTop: 20,
     paddingHorizontal: 22,
   },
   row: {
@@ -181,7 +178,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 80,
-    height: 80,
+    height: 98,
     justifyContent: "center",
     alignItems: "center",
   },
