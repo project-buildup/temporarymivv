@@ -1,4 +1,5 @@
 import {
+  Image,
   Platform,
   Pressable,
   SafeAreaView,
@@ -8,7 +9,6 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import MivvLogo from "../components/MivvLogo";
-import AlarmIcon from "../components/AlarmIcon";
 import BackIcon from "../components/BackIcon";
 
 function RemitScreen({ navigation }) {
@@ -26,7 +26,7 @@ function RemitScreen({ navigation }) {
           </Pressable>
 
           <MivvLogo />
-          <AlarmIcon />
+          <View style={{ width: 22, height: 24 }} />
         </View>
         <Pressable
           style={styles.buttonContainer}
@@ -34,16 +34,68 @@ function RemitScreen({ navigation }) {
             navigation.replace("RemitDone");
           }}
         >
-          <Text>토스에서 송금하기</Text>
+          <Image
+            style={{ width: 25, height: 24, marginRight: 10 }}
+            source={require("../assets/tossIcon.png")}
+          />
+          <Text
+            style={{
+              color: "#535353",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 15,
+            }}
+          >
+            토스에서 송금하기
+          </Text>
         </Pressable>
         <Pressable style={styles.buttonContainer} onPress={() => {}}>
-          <Text>카카오페이에서 송금하기</Text>
+          <Image
+            style={{ width: 50, height: 20, marginRight: 8 }}
+            source={require("../assets/kakaopayIcon.png")}
+          />
+          <Text
+            style={{
+              color: "#535353",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 15,
+            }}
+          >
+            카카오페이에서 송금하기
+          </Text>
         </Pressable>
         <Pressable style={styles.buttonContainer} onPress={() => {}}>
-          <Text>뱅크샐러드에서 송금하기</Text>
+          <Image
+            style={{ width: 30, height: 30, marginRight: 5 }}
+            source={require("../assets/banksaladIcon.png")}
+          />
+          <Text
+            style={{
+              color: "#535353",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 15,
+            }}
+          >
+            뱅크샐러드에서 송금하기
+          </Text>
         </Pressable>
-        <Pressable style={styles.buttonContainer} onPress={() => {}}>
-          <Text>은행 앱에서 송금하기</Text>
+        <Pressable
+          style={[styles.buttonContainer, { backgroundColor: "#3E3E3E" }]}
+          onPress={() => {}}
+        >
+          <Text
+            style={{
+              marginLeft: 36,
+              color: "#F3F3F3",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 15,
+            }}
+          >
+            은행 앱에서 송금하기
+          </Text>
+          <Image
+            style={{ width: 15, height: 11, marginLeft: 36 }}
+            source={require("../assets/downArrowIcon.png")}
+          />
         </Pressable>
       </View>
     </SafeAreaView>
@@ -59,7 +111,6 @@ const styles = StyleSheet.create({
   },
   rootContainer: {
     flex: 1,
-    paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
     alignItems: "center",
   },
   logoContainer: {
@@ -73,6 +124,7 @@ const styles = StyleSheet.create({
     width: 22,
   },
   buttonContainer: {
+    flexDirection: "row",
     width: 260,
     height: 60,
     backgroundColor: "#f0f0f0",
@@ -80,5 +132,14 @@ const styles = StyleSheet.create({
     marginTop: 40,
     alignItems: "center",
     justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
 });

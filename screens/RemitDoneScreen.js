@@ -1,4 +1,5 @@
 import {
+  Image,
   Platform,
   Pressable,
   SafeAreaView,
@@ -19,7 +20,15 @@ function RemitDoneScreen({ navigation }) {
         <View style={styles.checkContainer}>
           <CheckIcon />
           <View style={styles.checkTextContainer}>
-            <Text>송금이 완료되었습니다!</Text>
+            <Text
+              style={{
+                color: "#0047CF",
+                fontFamily: "Inter700",
+                fontSize: 15,
+              }}
+            >
+              송금이 완료되었습니다!
+            </Text>
           </View>
         </View>
         <Pressable
@@ -28,7 +37,19 @@ function RemitDoneScreen({ navigation }) {
             navigation.navigate("Rank");
           }}
         >
-          <Text>랭킹 확인하기</Text>
+          <Text
+            style={{
+              color: "#535353",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 15,
+            }}
+          >
+            랭킹 확인하기
+          </Text>
+          <Image
+            style={{ width: 8, height: 15 }}
+            source={require("../assets/buttonArrow.png")}
+          />
         </Pressable>
         <Pressable
           style={styles.buttonContainer}
@@ -36,7 +57,19 @@ function RemitDoneScreen({ navigation }) {
             navigation.navigate("Value");
           }}
         >
-          <Text>가치 소비 추천</Text>
+          <Text
+            style={{
+              color: "#535353",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 15,
+            }}
+          >
+            가치 소비 추천
+          </Text>
+          <Image
+            style={{ width: 8, height: 15 }}
+            source={require("../assets/buttonArrow.png")}
+          />
         </Pressable>
         <Pressable
           style={styles.buttonContainer}
@@ -44,7 +77,19 @@ function RemitDoneScreen({ navigation }) {
             navigation.navigate("Main_000");
           }}
         >
-          <Text>절약 현황 확인하기</Text>
+          <Text
+            style={{
+              color: "#535353",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 15,
+            }}
+          >
+            절약 현황 확인하기
+          </Text>
+          <Image
+            style={{ width: 8, height: 15 }}
+            source={require("../assets/buttonArrow.png")}
+          />
         </Pressable>
       </View>
     </SafeAreaView>
@@ -78,12 +123,23 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   buttonContainer: {
+    flexDirection: "row",
     width: 280,
     height: 64,
     backgroundColor: "#f0f0f0",
     borderRadius: 12,
     marginTop: 22,
+    paddingHorizontal: 30,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
 });
