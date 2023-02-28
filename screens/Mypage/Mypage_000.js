@@ -1,6 +1,5 @@
 //수정사항
 //닉네임 검사 - api 이용
-//이미지 사용자한테서 받아오기 - 2023/2/28까지
 
 import React, { useState } from "react";
 import {
@@ -59,38 +58,20 @@ function Mypage_000({ navigation }) {
         (Platform.OS === "ios" &&
           granted["ios.permission.PHOTO_LIBRARY"] === "granted")
       ) {
-        if (Platform.OS === "android") {
-          ImagePicker.launchImageLibrary({}, (response) => {
-            if (response.uri) {
-              setImageURI(response.uri);
+        const result = await ImagePicker.launchImageLibraryAsync({});
+        if (!result.canceled && result.assets && result.assets.length > 0) {
+          const selectedAsset = result.assets[0];
+          setImageURI(selectedAsset.uri);
 
-              // update user image
-              const updatedUser = {
-                ...users,
-                [id]: {
-                  ...users[id],
-                  image: response.uri,
-                },
-              };
-              setUser(updatedUser);
-            }
-          });
-        } else {
-          ImagePicker.showImagePicker({}, (response) => {
-            if (response.uri) {
-              setImageURI(response.uri);
-
-              // update user image
-              const updatedUser = {
-                ...users,
-                [id]: {
-                  ...users[id],
-                  image: response.uri,
-                },
-              };
-              setUser(updatedUser);
-            }
-          });
+          // update user image
+          const updatedUser = {
+            ...users,
+            [id]: {
+              ...users[id],
+              image: selectedAsset.uri,
+            },
+          };
+          setUser(updatedUser);
         }
       } else {
         console.log("Storage permission denied");
