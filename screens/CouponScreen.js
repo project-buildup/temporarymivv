@@ -1,7 +1,5 @@
 import {
-  Button,
   Image,
-  ImageBackground,
   Platform,
   Pressable,
   ScrollView,
@@ -13,20 +11,12 @@ import Constants from "expo-constants";
 import BackIcon from "../components/BackIcon";
 import { useState } from "react";
 import { Dialog } from "react-native-simple-dialogs";
-import {
-  challengeIdState,
-  challengeState,
-  couponIdState,
-  couponState,
-  valueIdState,
-  valueState,
-} from "../data/atom";
+import { couponIdState, couponState, valueState } from "../data/atom";
 import { useRecoilValue } from "recoil";
 
 function CouponScreen({ navigation }) {
   const [popUpVisible, setPopUpVisible] = useState(false);
 
-  const valueIds = useRecoilValue(valueIdState);
   const values = useRecoilValue(valueState);
   const couponIds = useRecoilValue(couponIdState);
   const coupons = useRecoilValue(couponState);
