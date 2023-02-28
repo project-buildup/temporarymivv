@@ -311,7 +311,7 @@ function Value_000({ navigation }) {
           }}
           onPress={() => {
             setPopUpVisible(false);
-            navigation.navigate("Coupon_000");
+            navigation.navigate("Coupon");
           }}
         >
           <Text

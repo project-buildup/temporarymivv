@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import CouponScreen from "./CouponScreen";
 import HelpScreen from "./HelpScreen";
 import Mypage_000 from "./Mypage/Mypage_000";
 
@@ -15,6 +16,11 @@ function MypageScreen() {
       <Stack.Screen
         name="Help"
         component={HelpScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Coupon"
+        component={CouponScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

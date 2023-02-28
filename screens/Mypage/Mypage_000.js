@@ -24,8 +24,13 @@ function Mypage_000({ navigation }) {
         >
           <Text>고객센터 / 도움말</Text>
         </Pressable>
-        <Pressable style={styles.buttonContainer} onPress={() => {}}>
-          <Text>개발자 정보</Text>
+        <Pressable
+          style={styles.buttonContainer}
+          onPress={() => {
+            navigation.navigate("Coupon");
+          }}
+        >
+          <Text>나의 쿠폰함</Text>
         </Pressable>
         <Pressable style={styles.buttonContainer} onPress={() => {}}>
           <Text>오픈소스 라이언스</Text>
