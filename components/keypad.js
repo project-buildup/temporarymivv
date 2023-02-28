@@ -6,14 +6,12 @@ import {
   Dimensions,
   Pressable,
 } from "react-native";
-// import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 const width = Dimensions.get("window").width;
 const arr = [0, 1, 2, 3, 4, 5];
 
 export const CustomNumberPad = (props) => {
-  // const navigation = useNavigation();
-
   const mapping = arr.map((index) => {
     return (
       <View
@@ -34,8 +32,9 @@ export const CustomNumberPad = (props) => {
   ////////////////////////////
 
   const correctPW = () => {
-    // navigation.navigate("PWReg_000");
-    console.log("correct");
+    const navigation = useNavigation();
+
+    props.goToSet ? navigation.navigate("PWReg_000") : null;
   };
   ////////////////////////////
 

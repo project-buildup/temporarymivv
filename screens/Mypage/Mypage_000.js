@@ -1,10 +1,8 @@
 //수정사항
-//닉네임 검사
-//user에 업데이트
-//이미지 사용자한테서 받아오기
-//이미지 밑에 동그라미 넣기
-//사용자 정보 받아오기
+//닉네임 검사 - api 이용
+//이미지 사용자한테서 받아오기 - 2023/2/28까지
 
+import React, { useState } from "react";
 import {
   Platform,
   Pressable,
@@ -15,41 +13,92 @@ import {
   Image,
   Modal,
   TextInput,
+  PermissionsAndroid,
 } from "react-native";
-import Icon from "react-native-vector-icons/Feather";
 import Constants from "expo-constants";
 import MivvLogo from "../../components/MivvLogo";
-import { usersState } from "../../data/atom";
-import { useState } from "react";
-import User from "../../models/user";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { userIdState, userState } from "../../data/atom";
+import * as ImagePicker from "expo-image-picker";
 
 function Mypage_000({ navigation }) {
-  const user = new User(
-    "Paul1",
-    "https://github.com/Sebyeok/mivvAssets/blob/main/profile1.jpeg?raw=true",
-    "010-1234-5678",
-    "홍길동",
-    "1999-02-05",
-    "testemail1@projectbuildup.io",
-    "123456",
-    0,
-    { bank: "shinhan", account: "12345678910123" },
-    [],
-    [],
-    { total: 850000, thisMonthTotal: 80000 },
-    1,
-    [],
-    [],
-    [],
-    true,
-    true
-  );
+  const userIds = useRecoilValue(userIdState);
+  const id = userIds[0];
+  const setUser = useSetRecoilState(userState);
+  const users = useRecoilValue(userState);
+  const user = users[id];
   const url = user.image;
   const [modal, setModal] = useState(false);
 
-  const [name, setName] = useState(user.name);
-  const [picture, setPicture] = useState();
+  const [name, setName] = useState(user.nickname);
   const [check, setCheck] = useState(true);
+  const [imageURI, setImageURI] = useState(null);
+
+  const changeName = (text) => {
+    setName(text);
+    // setCheck(false);
+  };
+
+  const handlePress = async () => {
+    try {
+      let granted;
+      if (Platform.OS === "android") {
+        granted = await PermissionsAndroid.requestMultiple([
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        ]);
+      } else {
+        granted = { "ios.permission.PHOTO_LIBRARY": "granted" };
+      }
+      if (
+        (Platform.OS === "android" &&
+          granted["android.permission.READ_EXTERNAL_STORAGE"] ===
+            PermissionsAndroid.RESULTS.GRANTED &&
+          granted["android.permission.WRITE_EXTERNAL_STORAGE"] ===
+            PermissionsAndroid.RESULTS.GRANTED) ||
+        (Platform.OS === "ios" &&
+          granted["ios.permission.PHOTO_LIBRARY"] === "granted")
+      ) {
+        if (Platform.OS === "android") {
+          ImagePicker.launchImageLibrary({}, (response) => {
+            if (response.uri) {
+              setImageURI(response.uri);
+
+              // update user image
+              const updatedUser = {
+                ...users,
+                [id]: {
+                  ...users[id],
+                  image: response.uri,
+                },
+              };
+              setUser(updatedUser);
+            }
+          });
+        } else {
+          ImagePicker.showImagePicker({}, (response) => {
+            if (response.uri) {
+              setImageURI(response.uri);
+
+              // update user image
+              const updatedUser = {
+                ...users,
+                [id]: {
+                  ...users[id],
+                  image: response.uri,
+                },
+              };
+              setUser(updatedUser);
+            }
+          });
+        }
+      } else {
+        console.log("Storage permission denied");
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.root}>
@@ -81,7 +130,14 @@ function Mypage_000({ navigation }) {
           </View>
 
           <View style={styles.display}>
-            {url ? (
+            {imageURI ? (
+              <Image
+                source={{
+                  uri: imageURI,
+                }}
+                style={[styles.picture, { marginLeft: 42 }]}
+              />
+            ) : url ? (
               <Image
                 source={{
                   uri: url,
@@ -106,19 +162,18 @@ function Mypage_000({ navigation }) {
                   marginRight: 56,
                 }}
               >
-                {name} 님
+                {user.nickname} 님
               </Text>
               <Pressable
                 onPress={() => {
                   setModal(true);
                 }}
               >
-                <Icon name="edit" size={24} color="#535353" />
+                <Image source={require("../../assets/edit.png")} />
               </Pressable>
             </View>
           </View>
         </View>
-
         <Pressable
           style={styles.buttonContainer}
           onPress={() => {
@@ -158,13 +213,19 @@ function Mypage_000({ navigation }) {
                     }}
                   >
                     <Text style={styles.modalText}>프로필사진</Text>
-                    <Pressable
-                      onPress={() => {
-                        console.log("사진");
-                      }}
-                    >
+                    <Pressable onPress={handlePress}>
                       <View>
-                        {url ? (
+                        {imageURI ? (
+                          <Image
+                            source={{
+                              uri: imageURI,
+                            }}
+                            style={[
+                              styles.picture,
+                              { width: 130, height: 130 },
+                            ]}
+                          />
+                        ) : url ? (
                           <Image
                             source={{
                               uri: url,
@@ -175,12 +236,13 @@ function Mypage_000({ navigation }) {
                             ]}
                           />
                         ) : (
-                          <View
+                          <Image
+                            source={require("../../assets/logoimage.png")}
                             style={[
                               styles.picture,
                               { width: 130, height: 130 },
                             ]}
-                          ></View>
+                          />
                         )}
                         <View
                           style={{
@@ -189,7 +251,7 @@ function Mypage_000({ navigation }) {
                           }}
                         />
                         <View style={styles.rocationBottom}>
-                          <Icon name="settings" size={24} color="white" />
+                          <Image source={require("../../assets/setting.png")} />
                         </View>
                       </View>
                     </Pressable>
@@ -209,9 +271,9 @@ function Mypage_000({ navigation }) {
                       <TextInput
                         value={name}
                         style={{ fontSize: 20, fontWeight: "bold" }}
-                        onChangeText={setName}
+                        onChangeText={changeName}
                       ></TextInput>
-                      <Icon name="edit" size={20} color="#535353" />
+                      <Image source={require("../../assets/edit.png")} />
                     </View>
                     {check ? (
                       <Text style={[styles.checktext, { color: "blue" }]}>
@@ -226,12 +288,26 @@ function Mypage_000({ navigation }) {
                 </View>
                 <View style={[styles.display, { marginTop: 18 }]}>
                   <Pressable
+                    disabled={!check}
                     onPress={() => {
+                      const updatedUser = {
+                        ...users,
+                        [id]: {
+                          ...users[id],
+                          nickname: name,
+                        },
+                      };
+                      setUser(updatedUser);
                       setModal(false);
                     }}
                   >
                     <View
-                      style={[styles.button, { backgroundColor: "#0047CF" }]}
+                      style={[
+                        styles.button,
+                        check
+                          ? { backgroundColor: "#0047CF" }
+                          : { backgroundColor: "#EFF1F5" },
+                      ]}
                     >
                       <Text style={[{ color: "white" }, styles.buttontext]}>
                         수정 완료
@@ -240,7 +316,9 @@ function Mypage_000({ navigation }) {
                   </Pressable>
                   <Pressable
                     onPress={() => {
+                      setName(user.nickname);
                       setModal(false);
+                      // setCheck(true);
                     }}
                   >
                     <View

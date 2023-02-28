@@ -8,7 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
-import Constants from "expo-constants";
+// import Constants from "expo-constants";
 import { Dialog } from "react-native-simple-dialogs";
 import Swiper from "react-native-swiper";
 import { useState } from "react";
@@ -24,6 +24,7 @@ import {
   userIdState,
   userState,
 } from "../../data/atom";
+import { Device } from "expo-device";
 
 import ChallengeBanner from "../../components/ChallengeBanner";
 
@@ -444,7 +445,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: "white",
-    paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
+    paddingTop: Platform.OS === "android" && Device.statusBarHeight,
   },
   rootContainer: {
     flex: 1,

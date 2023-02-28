@@ -29,7 +29,6 @@ export function fetchState(type, setter) {
       for (const key of keys) {
         const response = await fetchData(type + "/" + key);
         object[key] = response;
-        console.log(object);
         setter((oldData) => ({ ...oldData, ...object }));
       }
     } catch (error) {

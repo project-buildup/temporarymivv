@@ -1,6 +1,5 @@
 //수정사항
 //클릭시 설명 페이지 이동 - notion update 아직
-//질문 서버로 보내기
 //문의내역 가져오기 - 이미지 업데이트 아직
 
 import {
@@ -115,23 +114,27 @@ export function MyQuestions() {
 /////////////////////////////////////// 문의하기 //////////////////////////////////////////////
 export function Asking() {
   const userIds = useRecoilValue(userIdState);
+  const [question, setQuestion] = useState();
+  const setHelps = useSetRecoilState(helpState);
   const helpIds = useRecoilValue(helpIdState);
   const helps = useRecoilValue(helpState);
-  const [question, setQuestion] = useState();
-
-  const setContext = useSetRecoilState(helps[helpIds[0]]);
-  const setTime = useSetRecoilState(helps[helpIds[0]]);
-  const setHelpID = useSetRecoilState(helps[helpID[0]]);
-
   const handling = (newText) => {
     if (newText.length <= 1000) {
       setQuestion(newText);
     }
   };
   function sendQuestion() {
-    setContext(question);
-    setTime(new Date());
-    setHelpID(userIds[0]);
+    const id = helpIds[0];
+    const updatedHelp = {
+      ...helps,
+      [id]: {
+        ...helps[id],
+        askTime: new Date(),
+        content: question,
+        userId: userIds[0],
+      },
+    };
+    setHelps(updatedHelp);
   }
   return (
     <View>

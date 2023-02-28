@@ -13,18 +13,22 @@
     "@react-navigation/native": "^6.1.3",
     "@react-navigation/native-stack": "^6.9.9",
     "axios": "^1.3.2",
-    "expo": "~47.0.12",
-    "expo-constants": "^14.0.2",
-    "expo-font": "^11.0.1",
-    "expo-status-bar": "~1.4.2",
-    "react": "18.1.0",
-    "react-native": "0.70.5",
+    "expo": "^48.0.0",
+    "expo-constants": "~14.2.1",
+    "expo-device": "~5.2.1",
+    "expo-font": "~11.1.1",
+    "expo-status-bar": "~1.4.4",
+    "react": "18.2.0",
+    "react-native": "0.71.3",
+    "react-native-image-crop-picker": "^0.39.0",
+    "react-native-image-picker": "^5.1.0",
     "react-native-simple-dialogs": "^1.5.0",
     "react-native-swiper": "^1.6.0",
-    "recoil": "^0.7.6"
+    "recoil": "^0.7.6",
+    "expo-image-picker": "~14.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.20.0"
   },
   "private": true
 }
