@@ -1,5 +1,6 @@
 //수정사항
 //닉네임 검사 - api 이용
+//쿠폰함 이동
 
 import React, { useState } from "react";
 import {
@@ -13,12 +14,15 @@ import {
   Modal,
   TextInput,
   PermissionsAndroid,
+  ScrollView,
+  Dimensions,
 } from "react-native";
 import Constants from "expo-constants";
 import MivvLogo from "../../components/MivvLogo";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userIdState, userState } from "../../data/atom";
 import * as ImagePicker from "expo-image-picker";
+const width = Dimensions.get("window").width;
 
 function Mypage_000({ navigation }) {
   const userIds = useRecoilValue(userIdState);
@@ -145,36 +149,176 @@ function Mypage_000({ navigation }) {
               >
                 {user.nickname} 님
               </Text>
-              <Pressable
-                onPress={() => {
-                  setModal(true);
-                }}
-              >
-                <Image source={require("../../assets/edit.png")} />
-              </Pressable>
             </View>
           </View>
         </View>
-        <Pressable
-          style={styles.buttonContainer}
-          onPress={() => {
-            navigation.navigate("Help");
-          }}
-        >
-          <Text>고객센터 / 도움말</Text>
-        </Pressable>
-        <Pressable style={styles.buttonContainer} onPress={() => {}}>
-          <Text>개발자 정보</Text>
-        </Pressable>
-        <Pressable style={styles.buttonContainer} onPress={() => {}}>
-          <Text>오픈소스 라이언스</Text>
-        </Pressable>
-        <Pressable style={styles.buttonContainer} onPress={() => {}}>
-          <Text>버전 정보</Text>
-        </Pressable>
-        <Pressable style={styles.buttonContainer} onPress={() => {}}>
-          <Text>앱 설정</Text>
-        </Pressable>
+        <ScrollView style={{ width: "100%" }}>
+          <View style={{ alignItems: "center" }}>
+            <View
+              style={{
+                backgroundColor: "rgba(235, 235, 235, 0.38)",
+                width: width,
+                height: 44,
+                justifyContent: "center",
+                marginTop: 12,
+              }}
+            >
+              <Text style={[styles.buttonText, { color: "#000000" }]}>
+                내 정보
+              </Text>
+            </View>
+            <Pressable
+              style={styles.buttonContainer}
+              onPress={() => {
+                setModal(true);
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={styles.buttonText}>내 정보 수정</Text>
+                <Image
+                  style={{ height: 14, width: 8.84, marginRight: 21 }}
+                  source={require("../../assets/buttonArrow.png")}
+                />
+              </View>
+            </Pressable>
+            <Pressable
+              style={styles.buttonContainer}
+              onPress={() => {
+                console.log("쿠폰함 이동");
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={styles.buttonText}>나의 쿠폰함</Text>
+                <Image
+                  style={{ height: 14, width: 8.84, marginRight: 21 }}
+                  source={require("../../assets/buttonArrow.png")}
+                />
+              </View>
+            </Pressable>
+          </View>
+          <View style={{ alignItems: "center" }}>
+            <View
+              style={{
+                backgroundColor: "rgba(235, 235, 235, 0.38)",
+                width: width,
+                height: 44,
+                justifyContent: "center",
+                marginTop: 12,
+              }}
+            >
+              <Text style={[styles.buttonText, { color: "#000000" }]}>
+                환경설정
+              </Text>
+            </View>
+            <Pressable
+              style={styles.buttonContainer}
+              onPress={() => {
+                navigation.navigate("Help");
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={styles.buttonText}>고객센터 / 도움말</Text>
+                <Image
+                  style={{ height: 14, width: 8.84, marginRight: 21 }}
+                  source={require("../../assets/buttonArrow.png")}
+                />
+              </View>
+            </Pressable>
+            <Pressable style={styles.buttonContainer} onPress={() => {}}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={styles.buttonText}>개발자 정보</Text>
+                <Image
+                  style={{ height: 14, width: 8.84, marginRight: 21 }}
+                  source={require("../../assets/buttonArrow.png")}
+                />
+              </View>
+            </Pressable>
+          </View>
+          <View style={{ alignItems: "center" }}>
+            <View
+              style={{
+                backgroundColor: "rgba(235, 235, 235, 0.38)",
+                width: width,
+                height: 44,
+                justifyContent: "center",
+                marginTop: 12,
+              }}
+            >
+              <Text style={[styles.buttonText, { color: "#000000" }]}>
+                MIVV 정보
+              </Text>
+            </View>
+            <Pressable style={styles.buttonContainer} onPress={() => {}}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={styles.buttonText}>오픈소스 라이언스</Text>
+                <Image
+                  style={{ height: 14, width: 8.84, marginRight: 21 }}
+                  source={require("../../assets/buttonArrow.png")}
+                />
+              </View>
+            </Pressable>
+            <Pressable style={styles.buttonContainer} onPress={() => {}}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={styles.buttonText}>버전 정보</Text>
+                <Image
+                  style={{ height: 14, width: 8.84, marginRight: 21 }}
+                  source={require("../../assets/buttonArrow.png")}
+                />
+              </View>
+            </Pressable>
+            <Pressable style={styles.buttonContainer} onPress={() => {}}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={styles.buttonText}>앱 설정</Text>
+                <Image
+                  style={{ height: 14, width: 8.84, marginRight: 21 }}
+                  source={require("../../assets/buttonArrow.png")}
+                />
+              </View>
+            </Pressable>
+          </View>
+        </ScrollView>
       </View>
 
       {modal ? (
@@ -346,12 +490,12 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width: 300,
-    height: 55,
+    height: 56,
     backgroundColor: "#f0f0f0",
     borderRadius: 12,
     marginTop: 16,
-    alignItems: "center",
     justifyContent: "center",
+    alignContent: "space-between",
   },
   picture: {
     width: 100,
@@ -405,5 +549,11 @@ const styles = StyleSheet.create({
   buttontext: {
     fontSize: 12,
     fontWeight: "bold",
+  },
+  buttonText: {
+    fontSize: 16,
+    marginLeft: 23,
+    fontFamily: "KoPubWorldDotum700",
+    color: "#363636",
   },
 });
