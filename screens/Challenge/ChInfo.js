@@ -51,6 +51,7 @@ function ChInfo({ navigation }) {
             </Text>
           </View>
           <Pressable
+            style={{ margin: 24 }}
             onPress={() => {
               setPopUpVisible(true);
             }}
@@ -439,7 +440,7 @@ export default ChInfo;
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#FFFFFF",
     paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
   },
   rootContainer: {
@@ -468,7 +469,6 @@ const styles = StyleSheet.create({
     width: 315,
     height: 160,
     borderRadius: 20,
-    margin: 24,
     backgroundColor: "#f0f0f0",
     overflow: "hidden",
     alignItems: "center",
