@@ -1,6 +1,5 @@
 //수정사항
 //닉네임 검사 - api 이용
-//쿠폰함 이동
 
 import React, { useState } from "react";
 import {
@@ -190,7 +189,7 @@ function Mypage_000({ navigation }) {
             <Pressable
               style={styles.buttonContainer}
               onPress={() => {
-                console.log("쿠폰함 이동");
+                navigation.navigate("Coupon");
               }}
             >
               <View

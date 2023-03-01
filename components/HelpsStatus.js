@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   textbox: {
-    width: width / 3,
+    width: (width - 44) / 3,
     textAlign: "center",
     fontSize: 17,
   },

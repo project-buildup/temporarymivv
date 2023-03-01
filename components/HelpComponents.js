@@ -1,6 +1,6 @@
 //수정사항
 //클릭시 설명 페이지 이동 - notion update 아직
-//문의내역 가져오기 - 이미지 업데이트 아직
+//문의내역 가져오기 - API로 userId가 같은 것들만 가져왔다고 생각하고 하드코딩 해놓음
 
 import {
   StyleSheet,
@@ -10,15 +10,14 @@ import {
   TextInput,
   Button,
   Pressable,
+  FlatList,
+  Image,
 } from "react-native";
 import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { helpIdState, userIdState, helpState } from "../data/atom";
+import { helpIdState, userIdState, helpState, userState } from "../data/atom";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 
 export function CustomerCenter() {
-  const navigation = useNavigation();
-
   return (
     <View style={styles.questioncontainer}>
       <View
@@ -144,9 +143,90 @@ export function CustomerCenter() {
 }
 ///////////////////////////////// 내 문의내역 //////////////////////////////////////////////
 export function MyQuestions() {
-  return (
-    <View style={styles.questioncontainer}>
-      <Text style={{ textAlign: "center" }}>가져와서해야함</Text>
+  const userIds = useRecoilValue(userIdState);
+  const id = userIds[0];
+  const users = useRecoilValue(userState);
+  const user = users[id];
+  const url = user.image;
+  const test = [
+    {
+      answer: "문의 답변입니다",
+      answerTime: "2023-02-11",
+      askTime: "2023-02-10",
+      content: "문의 내용입니다.",
+      title: "문의 샘플1",
+      userId: "-NOcTHuPMea5OLbyK2k0",
+    },
+    {
+      answer: "문의 답변입니다",
+      answerTime: "2023-02-11",
+      askTime: "2023-02-10",
+      content: "문의 내용입니다.",
+      title: "문의 샘플 2",
+      userId: "-NOcTHuPMea5OLbyK2k0",
+    },
+  ];
+  const list = ({ item }) => {
+    return (
+      <View
+        style={{
+          width: 328,
+          height: 83,
+          borderBottomWidth: 1,
+          borderBottomColor: "#E3E3E3",
+          alignSelf: "center",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <View style={{ flexDirection: "row" }}>
+          <Image
+            source={{
+              uri: url,
+            }}
+            style={{ width: 43, height: 43, borderRadius: 100 }}
+          />
+          <View style={{ marginLeft: 12 }}>
+            <Text style={{ fontFamily: "KoPubWorldDotum500", fontSize: 15 }}>
+              {item.title}
+            </Text>
+            <Text
+              style={{
+                fontFamily: "KoPubWorldDotum500",
+                fontSize: 12,
+                color: "#999999",
+              }}
+            >
+              {item.askTime}
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={[
+            { fontFamily: "KoPubWorldDotum700", fontSize: 15 },
+            item.answer ? null : { color: "#8D8D8D" },
+          ]}
+        >
+          {item.answer ? "답변완료" : "대기"}
+        </Text>
+      </View>
+    );
+  };
+
+  return test.length ? (
+    <FlatList
+      data={test}
+      renderItem={list}
+      keyExtractor={(item, index) => `${item.userId}-${index}`}
+    />
+  ) : (
+    <View style={[{ justifyContent: "center" }, styles.questioncontainer]}>
+      <Text
+        style={{ fontFamily: "Inter-Regular", color: "#808080", fontSize: 20 }}
+      >
+        진행 중인 문의가 없어요
+      </Text>
     </View>
   );
 }
@@ -236,9 +316,9 @@ const styles = StyleSheet.create({
     borderRadius: 29,
   },
   questioncontainer: {
-    display: "flex",
     textAlign: "center",
     alignItems: "center",
+    height: 577,
   },
   presstext: {
     marginLeft: 20,
