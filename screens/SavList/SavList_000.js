@@ -84,6 +84,7 @@ export default SavList_000;
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: "#ffffff",
     paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
   },
   rootContainer: {

@@ -119,6 +119,7 @@ export default Notice_001;
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: "#ffffff",
     paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
   },
   rootContainer: {
