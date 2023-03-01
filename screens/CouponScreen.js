@@ -528,6 +528,7 @@ function CouponScreen({ navigation }) {
                 style={{ marginLeft: 22 }}
                 onPress={() => {
                   setModal(false);
+                  setPW("");
                 }}
               >
                 <BackIcon />
