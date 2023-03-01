@@ -4,6 +4,8 @@ import RemitScreen from "./RemitScreen";
 import RemitDoneScreen from "./RemitDoneScreen";
 import RankScreen from "./RankScreen";
 import ShortsScreen from "./ShortsScreen";
+import SavListScreen from "./SavListScreen";
+import NoticeScreen from "./NoticeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +30,16 @@ function MainScreen() {
       <Stack.Screen
         name="Rank"
         component={RankScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SavList"
+        component={SavListScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Notice"
+        component={NoticeScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

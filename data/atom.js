@@ -1,9 +1,13 @@
 import { atom } from "recoil";
-import User from "../models/user";
 
 export const splashState = atom({
   key: "splashState", //splash화면을 띄워야 하는가?
   default: false, //기본 값 : true
+});
+
+export const isIdentifiedState = atom({
+  key: "isIdentifiedState", //본인인증을 하였는가?
+  default: true, //기본 값 : false
 });
 
 export const idStoreState = atom({

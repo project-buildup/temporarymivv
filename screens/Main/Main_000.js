@@ -168,7 +168,13 @@ function Main_000({ navigation }) {
           <View style={styles.logoContainer}>
             <View style={styles.margin} />
             <MivvLogo />
-            <AlarmIcon />
+            <Pressable
+              onPress={() => {
+                navigation.navigate("Notice");
+              }}
+            >
+              <AlarmIcon />
+            </Pressable>
           </View>
           <Swiper
             autoplay={true}
@@ -191,7 +197,12 @@ function Main_000({ navigation }) {
             />
           </View>
           <View style={styles.savingSectionContainer}>
-            <View style={styles.savingPriceContainer}>
+            <Pressable
+              style={styles.savingPriceContainer}
+              onPress={() => {
+                navigation.navigate("SavList");
+              }}
+            >
               <View
                 style={{
                   marginTop: 13,
@@ -242,7 +253,7 @@ function Main_000({ navigation }) {
                   ₩
                 </Text>
               </View>
-            </View>
+            </Pressable>
             <View style={{ justifyContent: "space-between" }}>
               <View style={styles.savingCountContainer}>
                 <View style={{ paddingTop: 9, paddingLeft: 16 }}>

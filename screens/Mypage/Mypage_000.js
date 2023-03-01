@@ -301,7 +301,12 @@ function Mypage_000({ navigation }) {
                 />
               </View>
             </Pressable>
-            <Pressable style={styles.buttonContainer} onPress={() => {}}>
+            <Pressable
+              style={styles.buttonContainer}
+              onPress={() => {
+                navigation.navigate("Setting");
+              }}
+            >
               <View
                 style={{
                   flexDirection: "row",
