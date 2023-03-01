@@ -1,29 +1,33 @@
 import { atom } from "recoil";
-import User from "../models/user";
 
 export const splashState = atom({
   key: "splashState", //splash화면을 띄워야 하는가?
   default: false, //기본 값 : true
 });
 
+export const isIdentifiedState = atom({
+  key: "isIdentifiedState", //본인인증을 하였는가?
+  default: true, //기본 값 : false
+});
+
 export const idStoreState = atom({
   key: "idStoreState", //기기에 id가 저장되어 있는가?
-  default: false, //기본 값 : false
+  default: true, //기본 값 : false
 });
 
 export const loginState = atom({
   key: "loginState", //로그인 하였는가?
-  default: false, //기본 값 : false
+  default: true, //기본 값 : false
 });
 
 export const regFinishState = atom({
   key: "regFinishState", // 회원가입을 마쳤는가?
-  default: false, //기본 값 : false
+  default: true, //기본 값 : false
 });
 
 export const accountLinkState = atom({
   key: "accountLinkState", // 계좌를 연결하였는가?
-  default: false, //기본 값 : false
+  default: true, //기본 값 : false
 });
 
 export const passwordState = atom({

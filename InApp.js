@@ -6,6 +6,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {
   accountLinkState,
   idStoreState,
+  isIdentifiedState,
   loadingState,
   loginState,
   regFinishState,
@@ -14,6 +15,7 @@ import {
 import AfterLoginFetchScreen from "./screens/AfterLoginFetchScreen";
 import ArchiveScreen from "./screens/ArchiveScreen";
 import ChallengeScreen from "./screens/ChallengeScreen";
+import IdentifyScreen from "./screens/IdentifyScreen";
 import LinkAccountScreen from "./screens/LinkAccountScreen";
 import MainScreen from "./screens/MainScreen";
 import MypageScreen from "./screens/MypageScreen";
@@ -90,6 +92,7 @@ function AfterLogin() {
 
 function InApp() {
   const [isSplash, setIsSplash] = useRecoilState(splashState); //splash화면 나타내기 위해 설정해놓음
+  const isIdentified = useRecoilValue(isIdentifiedState);
   const isIdStored = useRecoilValue(idStoreState); //false가 기본값
   const isLogined = useRecoilValue(loginState);
   const isRegFinished = useRecoilValue(regFinishState);
@@ -100,20 +103,31 @@ function InApp() {
     return <SplashScreen />;
   }
 
-  if (!isSplash && !isIdStored) {
+  if (!isSplash && !isIdentified) {
+    return <IdentifyScreen />;
+  }
+
+  if (!isSplash && isIdentified && !isIdStored) {
     return <RegScreen />;
   }
 
-  if (!isSplash && isIdStored && !isRegFinished) {
+  if (!isSplash && isIdentified && isIdStored && !isRegFinished) {
     return <PWRegScreen />;
   }
 
-  if (!isSplash && isIdStored && isRegFinished && !isAccountLinked) {
+  if (
+    !isSplash &&
+    isIdentified &&
+    isIdStored &&
+    isRegFinished &&
+    !isAccountLinked
+  ) {
     return <LinkAccountScreen />;
   }
 
   if (
     !isSplash &&
+    isIdentified &&
     isIdStored &&
     isRegFinished &&
     isAccountLinked &&
@@ -124,6 +138,7 @@ function InApp() {
 
   if (
     !isSplash &&
+    isIdentified &&
     isIdStored &&
     isRegFinished &&
     isAccountLinked &&

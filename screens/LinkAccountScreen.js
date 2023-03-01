@@ -3,9 +3,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LinkAccount_000 from "./LinkAccount/LinkAccount_000";
 import LinkAccount_001 from "./LinkAccount/LinkAccount_001";
 import LinkAccount_002 from "./LinkAccount/LinkAccount_002";
-import PWReg_000 from "./PWReg/PWReg_000";
-import PWReg_001 from "./PWReg/PWReg_001";
-import PWReg_002 from "./PWReg/PWReg_002";
 
 const Stack = createNativeStackNavigator();
 
