@@ -163,7 +163,7 @@ function Mypage_000({ navigation }) {
                 marginTop: 12,
               }}
             >
-              <Text style={[styles.buttonText, { color: "#000000" }]}>
+              <Text style={[styles.buttonText, { color: "rgba(0,0,0,0.38)" }]}>
                 내 정보
               </Text>
             </View>
@@ -218,7 +218,7 @@ function Mypage_000({ navigation }) {
                 marginTop: 12,
               }}
             >
-              <Text style={[styles.buttonText, { color: "#000000" }]}>
+              <Text style={[styles.buttonText, { color: "rgba(0,0,0,0.38)" }]}>
                 환경설정
               </Text>
             </View>
@@ -268,7 +268,7 @@ function Mypage_000({ navigation }) {
                 marginTop: 12,
               }}
             >
-              <Text style={[styles.buttonText, { color: "#000000" }]}>
+              <Text style={[styles.buttonText, { color: "rgba(0,0,0,0.38)" }]}>
                 MIVV 정보
               </Text>
             </View>

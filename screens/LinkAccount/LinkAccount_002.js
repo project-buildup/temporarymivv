@@ -10,10 +10,18 @@ import {
 import Constants from "expo-constants";
 import { useSetRecoilState } from "recoil";
 import { accountLinkState } from "../../data/atom";
-
+import { useEffect } from "react";
 function LinkAccount_002() {
   const setIsAccountLinked = useSetRecoilState(accountLinkState);
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsAccountLinked(true);
+    }, 1200);
 
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, []);
   return (
     <SafeAreaView style={styles.root}>
       <Pressable
