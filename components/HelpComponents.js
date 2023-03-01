@@ -21,85 +21,124 @@ export function CustomerCenter() {
 
   return (
     <View style={styles.questioncontainer}>
-      <Text style={[styles.text, styles.presstext]}>자주 묻는 질문 Top5</Text>
-      <Pressable
-        style={[styles.smallpresstext, { marginTop: 21 }]}
-        onPress={() => {
-          console.log("1");
+      <View
+        style={{
+          backgroundColor: "#F9F9FB",
+          marginTop: 16.75,
+          width: 330,
+          borderRadius: 20,
         }}
       >
-        <View style={styles.displayrow}>
-          <Text style={styles.bigFont}>개인정보 변경 문의</Text>
-          <Text style={styles.font}>{">"}</Text>
+        <View
+          style={{
+            backgroundColor: "#EFF1F5",
+            height: 56,
+            borderRadius: 20,
+            width: 330,
+          }}
+        >
+          <Text style={[styles.text, styles.presstext]}>
+            자주 묻는 질문 Top5
+          </Text>
         </View>
-      </Pressable>
-      <Pressable
-        style={styles.smallpresstext}
-        onPress={() => {
-          console.log("2");
+        <Pressable
+          style={[styles.smallpresstext, { marginTop: 21 }]}
+          onPress={() => {
+            console.log("1");
+          }}
+        >
+          <View style={styles.displayrow}>
+            <Text style={styles.bigFont}>개인정보 변경 문의</Text>
+            <Text style={styles.font}>{">"}</Text>
+          </View>
+        </Pressable>
+        <Pressable
+          style={styles.smallpresstext}
+          onPress={() => {
+            console.log("2");
+          }}
+        >
+          <View style={styles.displayrow}>
+            <Text style={styles.bigFont}>개인정보 변경 문의</Text>
+            <Text style={styles.font}>{">"}</Text>
+          </View>
+        </Pressable>
+        <Pressable
+          style={styles.smallpresstext}
+          onPress={() => {
+            console.log("3");
+          }}
+        >
+          <View style={styles.displayrow}>
+            <Text style={styles.bigFont}>개인정보 변경 문의</Text>
+            <Text style={styles.font}>{">"}</Text>
+          </View>
+        </Pressable>
+        <Pressable
+          style={styles.smallpresstext}
+          onPress={() => {
+            console.log("4");
+          }}
+        >
+          <View style={styles.displayrow}>
+            <Text style={styles.bigFont}>개인정보 변경 문의</Text>
+            <Text style={styles.font}>{">"}</Text>
+          </View>
+        </Pressable>
+        <Pressable
+          style={styles.smallpresstext}
+          onPress={() => {
+            console.log("5");
+          }}
+        >
+          <View style={[styles.displayrow, { marginBottom: 19 }]}>
+            <Text style={styles.bigFont}>개인정보 변경 문의</Text>
+            <Text style={styles.font}>{">"}</Text>
+          </View>
+        </Pressable>
+      </View>
+      <View
+        style={{
+          backgroundColor: "#EFF1F5",
+          height: 56,
+          borderRadius: 20,
+          width: 330,
+          marginTop: 17,
         }}
       >
-        <View style={styles.displayrow}>
-          <Text style={styles.bigFont}>개인정보 변경 문의</Text>
-          <Text style={styles.font}>{">"}</Text>
-        </View>
-      </Pressable>
-      <Pressable
-        style={styles.smallpresstext}
-        onPress={() => {
-          console.log("3");
+        <Pressable
+          style={styles.presstext}
+          onPress={() => {
+            console.log("약관");
+          }}
+        >
+          <View style={[styles.displayrow, { width: "90%" }]}>
+            <Text style={styles.text}>이용약관</Text>
+            <Text style={[styles.font, { fontSize: 20 }]}>{">"}</Text>
+          </View>
+        </Pressable>
+      </View>
+      <View
+        style={{
+          backgroundColor: "#EFF1F5",
+          height: 56,
+          borderRadius: 20,
+          width: 330,
+          marginTop: 17,
         }}
       >
-        <View style={styles.displayrow}>
-          <Text style={styles.bigFont}>개인정보 변경 문의</Text>
-          <Text style={styles.font}>{">"}</Text>
-        </View>
-      </Pressable>
-      <Pressable
-        style={styles.smallpresstext}
-        onPress={() => {
-          console.log("4");
-        }}
-      >
-        <View style={styles.displayrow}>
-          <Text style={styles.bigFont}>개인정보 변경 문의</Text>
-          <Text style={styles.font}>{">"}</Text>
-        </View>
-      </Pressable>
-      <Pressable
-        style={styles.smallpresstext}
-        onPress={() => {
-          console.log("5");
-        }}
-      >
-        <View style={styles.displayrow}>
-          <Text style={styles.bigFont}>개인정보 변경 문의</Text>
-          <Text style={styles.font}>{">"}</Text>
-        </View>
-      </Pressable>
-
-      <Pressable
-        style={styles.presstext}
-        onPress={() => {
-          console.log("약관");
-        }}
-      >
-        <View style={styles.displayrow}>
-          <Text style={styles.text}>이용약관</Text>
-          <Text style={styles.font}>{">"}</Text>
-        </View>
-      </Pressable>
-      <Pressable
-        style={styles.presstext}
-        onPress={() => {
-          console.log("방침");
-        }}
-      >
-        <View style={styles.displayrow}>
-          <Text style={styles.text}>개인정보 처리방침</Text>
-          <Text style={styles.font}>{">"}</Text>
-        </View>
-      </Pressable>
+        <Pressable
+          style={styles.presstext}
+          onPress={() => {
+            console.log("방침");
+          }}
+        >
+          <View style={[styles.displayrow, { width: "90%" }]}>
+            <Text style={styles.text}>개인정보 처리방침</Text>
+            <Text style={[styles.font, { fontSize: 20 }]}>{">"}</Text>
+          </View>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -115,6 +154,7 @@ export function MyQuestions() {
 export function Asking() {
   const userIds = useRecoilValue(userIdState);
   const [question, setQuestion] = useState();
+  const [title, setTitle] = useState();
   const setHelps = useSetRecoilState(helpState);
   const helpIds = useRecoilValue(helpIdState);
   const helps = useRecoilValue(helpState);
@@ -122,6 +162,9 @@ export function Asking() {
     if (newText.length <= 1000) {
       setQuestion(newText);
     }
+  };
+  const handlingTitle = (title) => {
+    setTitle(title);
   };
   function sendQuestion() {
     const id = helpIds[0];
@@ -132,8 +175,10 @@ export function Asking() {
         askTime: new Date(),
         content: question,
         userId: userIds[0],
+        title: title,
       },
     };
+    console.log(helps[id]);
     setHelps(updatedHelp);
   }
   return (
@@ -149,11 +194,20 @@ export function Asking() {
       >
         어떤 점이 궁금하신가요?
       </Text>
+      <View style={[styles.container, { height: 48, marginBottom: 13 }]}>
+        <TextInput
+          placeholder="문의 제목"
+          onChangeText={handlingTitle}
+          multiline={true}
+          style={{ marginLeft: 23, marginRight: 26 }}
+        />
+      </View>
       <View style={styles.container}>
         <TextInput
           placeholder="궁금한 점을 작성해주세요 (최대 1,000자)"
           onChangeText={handling}
           multiline={true}
+          style={{ marginLeft: 23, marginRight: 26 }}
         />
       </View>
       <View style={styles.buttonwrapper}>
@@ -184,28 +238,33 @@ const styles = StyleSheet.create({
   questioncontainer: {
     display: "flex",
     textAlign: "center",
+    alignItems: "center",
   },
   presstext: {
-    marginLeft: 48,
-    marginTop: 27,
+    marginLeft: 20,
     flexDirection: "row",
+    marginTop: 13,
   },
   text: {
     fontSize: 20,
+    fontFamily: "KoPubWorldDotum500",
   },
   smallpresstext: {
-    marginLeft: 48,
     marginTop: 16,
     flexDirection: "row",
   },
   displayrow: {
     flexDirection: "row",
-    width: "80%",
+    width: "60%",
     justifyContent: "space-between",
   },
   font: {
     fontSize: 16,
     color: "#888888",
   },
-  bigFont: { fontSize: 16, color: "#808080" },
+  bigFont: {
+    fontSize: 16,
+    color: "#808080",
+    marginLeft: 31,
+  },
 });
