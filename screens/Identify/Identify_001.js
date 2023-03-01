@@ -1,5 +1,4 @@
 import {
-  Button,
   Platform,
   SafeAreaView,
   StyleSheet,
@@ -7,10 +6,12 @@ import {
   Pressable,
   View,
   Image,
+  Dimensions,
 } from "react-native";
 import Constants from "expo-constants";
 import { useSetRecoilState } from "recoil";
 import { isIdentifiedState } from "../../data/atom";
+const height = Dimensions.get("window").height;
 
 function Identify_001({}) {
   const setIsIdentified = useSetRecoilState(isIdentifiedState);
@@ -21,22 +22,38 @@ function Identify_001({}) {
 
   return (
     <SafeAreaView style={styles.root}>
-      <View style={styles.rootContainer}>
-        <View style={{ alignItems: "center" }}>
-          <Image source={require("../../assets/checkIcon.png")} />
-        </View>
+      <Pressable
+        onPress={() => {
+          setIsIdentified(true);
+        }}
+      >
+        <View style={styles.rootContainer}>
+          <View style={{ position: "absolute", top: 45, left: 37 }}>
+            <Text
+              style={{
+                fontWeight: "KoPubWorldDotum700",
+                fontSize: 31,
+                fontWeight: "bold",
+              }}
+            >
+              회원가입
+            </Text>
+            <Text
+              style={{
+                fontFamily: "KoPubWorldDotum700",
+                fontSize: 20,
+                marginTop: 20,
+              }}
+            >
+              다시 MIVV로 돌아오신 걸 환영해요!
+            </Text>
+          </View>
 
-        <Text
-          style={{
-            marginTop: 33.99,
-            fontSize: 15,
-            color: "#0047CF",
-            fontWeight: "bold",
-          }}
-        >
-          회원가입
-        </Text>
-      </View>
+          <View style={{ position: "absolute", right: 0, top: 268 }}>
+            <Image source={require("../../assets/identification.png")} />
+          </View>
+        </View>
+      </Pressable>
     </SafeAreaView>
   );
 }
@@ -52,6 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
     justifyContent: "center",
+    height: height,
     alignItems: "center",
   },
 });

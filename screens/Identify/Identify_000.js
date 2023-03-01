@@ -1,5 +1,8 @@
+//수정사항
+//본인인증하기
+//결과 api로 받아서 navigation, 취소 결정
+
 import {
-  Button,
   Platform,
   SafeAreaView,
   StyleSheet,
@@ -7,35 +10,55 @@ import {
   Pressable,
   View,
   Image,
+  Dimensions,
 } from "react-native";
 import Constants from "expo-constants";
 import { useSetRecoilState } from "recoil";
 import { regFinishState } from "../../data/atom";
+import { useState } from "react";
+import { Dialog } from "react-native-simple-dialogs";
+
+const height = Dimensions.get("window").height;
 
 function Identify_000({ navigation }) {
   const setIsRegFinished = useSetRecoilState(regFinishState);
+  const [modal, setModal] = useState(false);
 
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.rootContainer}>
-        <View style={{ alignItems: "center" }}>
-          <Image source={require("../../assets/checkIcon.png")} />
+        <View style={{ position: "absolute", top: 45, left: 37 }}>
+          <Text
+            style={{
+              fontWeight: "KoPubWorldDotum700",
+              fontSize: 31,
+              fontWeight: "bold",
+            }}
+          >
+            회원가입
+          </Text>
+          <Text
+            style={{
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 20,
+              marginTop: 20,
+            }}
+          >
+            MIVV에 오신 걸 환영해요!
+          </Text>
+          <Text style={{ fontFamily: "KoPubWorldDotum700", fontSize: 20 }}>
+            이제 몇 단계 안 남았어요.
+          </Text>
         </View>
 
-        <Text
-          style={{
-            marginTop: 33.99,
-            fontSize: 15,
-            color: "#0047CF",
-            fontWeight: "bold",
-          }}
-        >
-          회원가입
-        </Text>
+        <View style={{ position: "absolute", right: 0 }}>
+          <Image source={require("../../assets/identification.png")} />
+        </View>
         <Pressable
           onPress={() => {
-            navigation.navigate("Identify_001");
+            setModal(true);
           }}
+          style={{ position: "absolute", bottom: 20 }}
         >
           <View
             style={{
@@ -44,7 +67,6 @@ function Identify_000({ navigation }) {
               height: 45,
               borderRadius: 20,
               justifyContent: "center",
-              marginTop: 75.62,
             }}
           >
             <Text
@@ -59,6 +81,52 @@ function Identify_000({ navigation }) {
             </Text>
           </View>
         </Pressable>
+
+        {modal ? (
+          <Dialog
+            visible={modal}
+            onTouchOutside={() => {
+              setModal(false);
+            }}
+          >
+            <Text
+              style={{
+                marginTop: 35.66,
+                fontFamily: "KoPubWorldDotum700",
+                fontSize: 16,
+              }}
+            >
+              본인인증에 실패하였습니다
+            </Text>
+            <View
+              style={{
+                marginTop: 32.9,
+                height: 42,
+                borderRadius: 15,
+                backgroundColor: "#0047CF",
+                width: 310,
+                justifyContent: "center",
+              }}
+            >
+              <Pressable
+                onPress={() => {
+                  setModal(false);
+                  navigation.navigate("Identify_001");
+                }}
+              >
+                <Text
+                  style={{
+                    alignSelf: "center",
+                    color: "#F0F0F0",
+                    fontSize: 18,
+                  }}
+                >
+                  확인
+                </Text>
+              </Pressable>
+            </View>
+          </Dialog>
+        ) : null}
       </View>
     </SafeAreaView>
   );
@@ -75,6 +143,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: Platform.OS === "android" && Constants.statusBarHeight,
     justifyContent: "center",
+    height: height,
     alignItems: "center",
   },
 });

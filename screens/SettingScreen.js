@@ -42,7 +42,9 @@ function SettingScreen({ navigation }) {
               height: "100%",
               alignItems: "center",
             }}
-          ></View>
+          >
+            <Text>setting</Text>
+          </View>
         </View>
       </ScrollView>
     </View>
