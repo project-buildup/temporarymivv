@@ -27,7 +27,7 @@ export const regFinishState = atom({
 
 export const accountLinkState = atom({
   key: "accountLinkState", // 계좌를 연결하였는가?
-  default: true, //기본 값 : false
+  default: false, //기본 값 : false
 });
 
 export const passwordState = atom({
