@@ -140,8 +140,17 @@ function Reg_000({ navigation }) {
                 alignSelf: "center",
               }}
             >
-              등록하기 버튼을 누르시면, 본 앱의 이용약관 및 개인정보처리방침에
-              동의하신 것으로 간주됩니다.
+              등록하기 버튼을 누르시면, 본 앱의{" "}
+              <Text
+                style={{
+                  color: "#0047CF",
+                  fontWeight: "bold",
+                  textDecorationLine: "underline",
+                }}
+              >
+                이용약관 및 개인정보처리방침
+              </Text>
+              에 동의하신 것으로 간주됩니다.
             </Text>
             <Pressable
               onPress={() => {
