@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useScrollToTop } from "@react-navigation/native";
+import { useRef, useState } from "react";
 import {
   Image,
   ImageBackground,
@@ -13,8 +14,6 @@ import { useRecoilValue } from "recoil";
 import {
   advertisementIdState,
   advertisementState,
-  userIdState,
-  userState,
   valueIdState,
   valueState,
 } from "../../data/atom";
@@ -27,9 +26,12 @@ function Value_000({ navigation }) {
   const advertisementIds = useRecoilValue(advertisementIdState);
   const advertisements = useRecoilValue(advertisementState);
 
+  const ref = useRef();
+
+  useScrollToTop(ref);
   return (
     <View style={styles.root}>
-      <ScrollView bounces={false}>
+      <ScrollView ref={ref} bounces={false}>
         <ImageBackground
           source={{ uri: values[valueIds[0]].image }}
           resizeMode="stretch"

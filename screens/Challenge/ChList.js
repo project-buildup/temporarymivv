@@ -14,8 +14,9 @@ import AlarmIcon from "../../components/AlarmIcon";
 import ChallengeBanner from "../../components/ChallengeBanner";
 import { useRecoilValue } from "recoil";
 import { challengeIdState, challengeState } from "../../data/atom";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ChallengeListItem from "../../components/ChallengeListItem";
+import { useScrollToTop } from "@react-navigation/native";
 
 function ChList({ navigation }) {
   const [isUp, setIsUp] = useState(true);
@@ -31,6 +32,10 @@ function ChList({ navigation }) {
   const endAt = challenges[challengeIds[0]].endAt;
 
   const challengeListItems = [];
+
+  const ref = useRef();
+
+  useScrollToTop(ref);
 
   challengeIds.map((id) => {
     challengeListItems.push(
@@ -55,7 +60,7 @@ function ChList({ navigation }) {
 
   return (
     <SafeAreaView style={styles.root}>
-      <ScrollView>
+      <ScrollView ref={ref}>
         <View style={styles.rootContainer}>
           <View style={styles.logoContainer}>
             <View style={styles.margin} />

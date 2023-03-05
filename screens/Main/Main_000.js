@@ -11,7 +11,7 @@ import {
 // import Constants from "expo-constants";
 import { Dialog } from "react-native-simple-dialogs";
 import Swiper from "react-native-swiper";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import MivvLogo from "../../components/MivvLogo";
 import AlarmIcon from "../../components/AlarmIcon";
 import ChallengeItem from "../../components/ChallengeItem";
@@ -27,6 +27,7 @@ import {
 import { Device } from "expo-device";
 
 import ChallengeBanner from "../../components/ChallengeBanner";
+import { useScrollToTop } from "@react-navigation/native";
 
 function Main_000({ navigation }) {
   const [popUpVisible, setPopUpVisible] = useState(false);
@@ -42,6 +43,9 @@ function Main_000({ navigation }) {
 
   const challengeBanners = [];
   const mychallenges = [];
+  const ref = useRef();
+
+  useScrollToTop(ref);
 
   challengeIds.map((id) => {
     const imageUri = challenges[id].image;
@@ -76,7 +80,7 @@ function Main_000({ navigation }) {
             style={{
               padding: 2,
               color: "#797979",
-              fontFamily: "Inter400",
+              fontFamily: "KoPubWorldDotum700",
               fontSize: 12,
             }}
           >
@@ -86,7 +90,7 @@ function Main_000({ navigation }) {
             style={{
               padding: 2,
               color: "#000000",
-              fontFamily: "Inter400",
+              fontFamily: "KoPubWorldDotum700",
               fontSize: 16,
             }}
           >
@@ -96,7 +100,7 @@ function Main_000({ navigation }) {
             style={{
               padding: 2,
               color: "#000000",
-              fontFamily: "Inter400",
+              fontFamily: "KoPubWorldDotum700",
               fontSize: 16,
             }}
           >
@@ -105,7 +109,7 @@ function Main_000({ navigation }) {
           <Text
             style={{
               color: "#000000",
-              fontFamily: "Inter400",
+              fontFamily: "KoPubWorldDotum700",
               fontSize: 16,
             }}
           >
@@ -129,7 +133,7 @@ function Main_000({ navigation }) {
           <Text
             style={{
               color: "#f0f0f0",
-              fontFamily: "Inter600",
+              fontFamily: "KoPubWorldDotum700",
               fontSize: 13,
             }}
           >
@@ -163,7 +167,7 @@ function Main_000({ navigation }) {
 
   return (
     <SafeAreaView style={styles.root}>
-      <ScrollView>
+      <ScrollView ref={ref}>
         <View style={styles.rootContainer}>
           <View style={styles.logoContainer}>
             <View style={styles.margin} />

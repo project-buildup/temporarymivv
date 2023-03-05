@@ -2,6 +2,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
+import { Image } from "react-native";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   accountLinkState,
@@ -31,38 +33,92 @@ const Tab = createBottomTabNavigator();
 function Overview() {
   return (
     <Tab.Navigator
-    // screenOptions={{
-    //   tabBarStyle: {
-    //     borderTopLeftRadius: 20,
-    //     borderTopRightRadius: 20,
-    //   },
-    // }}
+      screenOptions={({ route }) => ({
+        tabBarStyle: {
+          position: "absolute",
+          bottom: 0,
+          height: 90,
+          backgroundColor: "#ffffff",
+          borderTopLeftRadius: 15,
+          borderTopRightRadius: 15,
+          borderTopWidth: 0,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 3,
+          },
+          shadowOpacity: 0.27,
+          shadowRadius: 4.65,
+          elevation: 6,
+        },
+        tabBarShowLabel: false,
+      })}
     >
       <Tab.Screen
         name="Main"
         component={MainScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            source = focused
+              ? require("./assets/focusedMainTabIcon.png")
+              : require("./assets/mainTabIcon.png");
+            return <Image source={source} style={{ width: 30, height: 30 }} />;
+          },
+        }}
       />
       <Tab.Screen
         name="Value"
         component={ValueScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            source = focused
+              ? require("./assets/focusedValueTabIcon.png")
+              : require("./assets/valueTabIcon.png");
+            return <Image source={source} style={{ width: 30, height: 21 }} />;
+          },
+        }}
       />
 
       <Tab.Screen
         name="Challenge"
         component={ChallengeScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            source = focused
+              ? require("./assets/focusedChallengeTabIcon.png")
+              : require("./assets/challengeTabIcon.png");
+            return <Image source={source} style={{ width: 24, height: 18 }} />;
+          },
+        }}
       />
       <Tab.Screen
         name="Archive"
         component={ArchiveScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            source = focused
+              ? require("./assets/focusedArchiveTabIcon.png")
+              : require("./assets/archiveTabIcon.png");
+            return <Image source={source} style={{ width: 29, height: 29 }} />;
+          },
+        }}
       />
       <Tab.Screen
         name="Mypage"
         component={MypageScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            source = focused
+              ? require("./assets/focusedMypageTabIcon.png")
+              : require("./assets/mypageTabIcon.png");
+            return <Image source={source} style={{ width: 23, height: 25 }} />;
+          },
+        }}
       />
     </Tab.Navigator>
   );

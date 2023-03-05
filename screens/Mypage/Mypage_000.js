@@ -1,7 +1,7 @@
 //수정사항
 //닉네임 검사 - api 이용
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Platform,
   Pressable,
@@ -21,6 +21,7 @@ import MivvLogo from "../../components/MivvLogo";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userIdState, userState } from "../../data/atom";
 import * as ImagePicker from "expo-image-picker";
+import { useScrollToTop } from "@react-navigation/native";
 const width = Dimensions.get("window").width;
 
 function Mypage_000({ navigation }) {
@@ -35,6 +36,10 @@ function Mypage_000({ navigation }) {
   const [name, setName] = useState(user.nickname);
   const [check, setCheck] = useState(true);
   const [imageURI, setImageURI] = useState(null);
+
+  const ref = useRef();
+
+  useScrollToTop(ref);
 
   const changeName = (text) => {
     setName(text);
@@ -151,7 +156,7 @@ function Mypage_000({ navigation }) {
             </View>
           </View>
         </View>
-        <ScrollView style={{ width: "100%" }}>
+        <ScrollView ref={ref} style={{ width: "100%" }}>
           <View style={{ alignItems: "center" }}>
             <View
               style={{

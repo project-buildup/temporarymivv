@@ -121,11 +121,7 @@ function SavList_000({ setIsMonth, navigation }) {
             {" "}
             |{" "}
           </Text>
-          <Pressable
-            onPress={() => {
-              setIsMonth(false);
-            }}
-          >
+          <Pressable onPress={() => setIsMonth(false)}>
             <Text
               style={{
                 color: "#C8C8C8",

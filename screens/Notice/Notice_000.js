@@ -93,9 +93,7 @@ function Notice_000({ setIsEvent, navigation }) {
 
                   elevation: 8,
                 }}
-                onPress={() => {
-                  setIsEvent(false);
-                }}
+                onPress={() => setIsEvent(false)}
               >
                 <Text
                   style={{

@@ -72,11 +72,7 @@ function SavList_001({ setIsMonth, navigation }) {
           </Text>
         </View>
         <View style={{ flexDirection: "row" }}>
-          <Pressable
-            onPress={() => {
-              setIsMonth(true);
-            }}
-          >
+          <Pressable onPress={() => setIsMonth(true)}>
             <Text
               style={{
                 color: "#C8C8C8",
