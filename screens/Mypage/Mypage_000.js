@@ -1,7 +1,7 @@
 //수정사항
 //닉네임 검사 - api 이용
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Platform,
   Pressable,
@@ -24,7 +24,7 @@ import * as ImagePicker from "expo-image-picker";
 import { useFocusEffect, useScrollToTop } from "@react-navigation/native";
 const width = Dimensions.get("window").width;
 
-function Mypage_000({ navigation }) {
+function Mypage_000({ route, navigation }) {
   const userIds = useRecoilValue(userIdState);
   const id = userIds[0];
   const setUser = useSetRecoilState(userState);
@@ -94,6 +94,12 @@ function Mypage_000({ navigation }) {
       console.warn(err);
     }
   };
+
+  useEffect(() => {
+    if (route.params?.coupon === "Coupon") {
+      navigation.navigate("Coupon");
+    }
+  }, [route]);
 
   return (
     <SafeAreaView style={styles.root}>
@@ -313,7 +319,7 @@ function Mypage_000({ navigation }) {
               </View>
             </Pressable>
             <Pressable
-              style={styles.buttonContainer}
+              style={[styles.buttonContainer, { marginBottom: 75 }]}
               onPress={() => {
                 navigation.navigate("Setting");
               }}

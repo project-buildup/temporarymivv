@@ -320,7 +320,10 @@ function Value_000({ navigation }) {
           }}
           onPress={() => {
             setPopUpVisible(false);
-            navigation.navigate("Mypage", { screen: "Coupon" });
+            navigation.navigate("Mypage", {
+              screen: "Mypage_000",
+              params: { coupon: "Coupon" },
+            });
           }}
         >
           <Text
