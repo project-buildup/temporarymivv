@@ -21,7 +21,7 @@ import MivvLogo from "../../components/MivvLogo";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userIdState, userState } from "../../data/atom";
 import * as ImagePicker from "expo-image-picker";
-import { useScrollToTop } from "@react-navigation/native";
+import { useFocusEffect, useScrollToTop } from "@react-navigation/native";
 const width = Dimensions.get("window").width;
 
 function Mypage_000({ navigation }) {
@@ -38,6 +38,12 @@ function Mypage_000({ navigation }) {
   const [imageURI, setImageURI] = useState(null);
 
   const ref = useRef();
+
+  useFocusEffect(() => {
+    if (ref.current) {
+      ref.current.scrollTo({ y: 0 });
+    }
+  });
 
   useScrollToTop(ref);
 

@@ -16,7 +16,7 @@ import { useRecoilValue } from "recoil";
 import { challengeIdState, challengeState } from "../../data/atom";
 import { useRef, useState } from "react";
 import ChallengeListItem from "../../components/ChallengeListItem";
-import { useScrollToTop } from "@react-navigation/native";
+import { useFocusEffect, useScrollToTop } from "@react-navigation/native";
 
 function ChList({ navigation }) {
   const [isUp, setIsUp] = useState(true);
@@ -34,6 +34,12 @@ function ChList({ navigation }) {
   const challengeListItems = [];
 
   const ref = useRef();
+
+  useFocusEffect(() => {
+    if (ref.current) {
+      ref.current.scrollTo({ y: 0 });
+    }
+  });
 
   useScrollToTop(ref);
 

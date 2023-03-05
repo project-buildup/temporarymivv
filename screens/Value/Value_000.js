@@ -1,4 +1,4 @@
-import { useScrollToTop } from "@react-navigation/native";
+import { useFocusEffect, useScrollToTop } from "@react-navigation/native";
 import { useRef, useState } from "react";
 import {
   Image,
@@ -28,7 +28,14 @@ function Value_000({ navigation }) {
 
   const ref = useRef();
 
+  useFocusEffect(() => {
+    if (ref.current) {
+      ref.current.scrollTo({ y: 0 });
+    }
+  });
+
   useScrollToTop(ref);
+
   return (
     <View style={styles.root}>
       <ScrollView ref={ref} bounces={false}>
@@ -313,7 +320,7 @@ function Value_000({ navigation }) {
           }}
           onPress={() => {
             setPopUpVisible(false);
-            navigation.navigate("Coupon");
+            navigation.navigate("Mypage", { screen: "Coupon" });
           }}
         >
           <Text

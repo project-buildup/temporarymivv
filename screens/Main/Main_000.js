@@ -27,7 +27,7 @@ import {
 import { Device } from "expo-device";
 
 import ChallengeBanner from "../../components/ChallengeBanner";
-import { useScrollToTop } from "@react-navigation/native";
+import { useFocusEffect, useScrollToTop } from "@react-navigation/native";
 
 function Main_000({ navigation }) {
   const [popUpVisible, setPopUpVisible] = useState(false);
@@ -44,6 +44,12 @@ function Main_000({ navigation }) {
   const challengeBanners = [];
   const mychallenges = [];
   const ref = useRef();
+
+  useFocusEffect(() => {
+    if (ref.current) {
+      ref.current.scrollTo({ y: 0 });
+    }
+  });
 
   useScrollToTop(ref);
 
