@@ -14,6 +14,7 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import Constants from "expo-constants";
 import { useState } from "react";
@@ -97,281 +98,285 @@ function LinkAccount_000({ navigation }) {
   };
   return (
     <SafeAreaView style={styles.root}>
-      <View style={styles.rootContainer}>
-        <Text
-          style={{
-            fontSize: 31,
-            fontFamily: "KoPubWorldDotum700",
-            marginTop: 45,
-            marginLeft: 37,
-          }}
-        >
-          은행계좌 연결하기
-        </Text>
-        <Text
-          style={{
-            fontSize: 20,
-            marginTop: 20,
-            fontFamily: "KoPubWorldDotum700",
-            marginLeft: 37,
-          }}
-        >
-          연동할 계좌 정보를 입력해주세요
-        </Text>
-        <View style={{ marginTop: 20 }}>
-          <Text style={{ fontSize: 15, fontWeight: "bold", marginLeft: 38 }}>
-            은행명
-          </Text>
-
-          <Pressable
-            onPress={() => {
-              setModal(true);
-              setData(ALLDATA);
+      <ScrollView>
+        <View style={styles.rootContainer}>
+          <Text
+            style={{
+              fontSize: 31,
+              fontFamily: "KoPubWorldDotum700",
+              marginTop: 45,
+              marginLeft: 37,
             }}
-            style={{ alignItems: "center" }}
           >
-            <View
-              style={{
-                marginTop: 14,
-                width: 333,
-                backgroundColor: "#EFF1F5",
-                height: 45,
-                borderRadius: 19,
-                justifyContent: "center",
-                paddingLeft: 20,
+            은행계좌 연결하기
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              marginTop: 20,
+              fontFamily: "KoPubWorldDotum700",
+              marginLeft: 37,
+            }}
+          >
+            연동할 계좌 정보를 입력해주세요
+          </Text>
+          <View style={{ marginTop: 20 }}>
+            <Text style={{ fontSize: 15, fontWeight: "bold", marginLeft: 38 }}>
+              은행명
+            </Text>
+
+            <Pressable
+              onPress={() => {
+                setModal(true);
+                setData(ALLDATA);
               }}
+              style={{ alignItems: "center" }}
             >
-              <Text style={{ fontFamily: "KoPubWorldDotum500", fontSize: 16 }}>
-                {input}
-              </Text>
-            </View>
-          </Pressable>
-          {input ? (
-            <View style={{ marginTop: 20 }}>
-              <Text
-                style={{ fontSize: 15, fontWeight: "bold", marginLeft: 38 }}
-              >
-                계좌 번호
-              </Text>
-              <Pressable
-                onPress={() => {
-                  setKeypad(true);
+              <View
+                style={{
+                  marginTop: 14,
+                  width: 333,
+                  backgroundColor: "#EFF1F5",
+                  height: 45,
+                  borderRadius: 19,
+                  justifyContent: "center",
+                  paddingLeft: 20,
                 }}
               >
-                <View
-                  style={{
-                    marginTop: 14,
-                    width: 333,
-                    backgroundColor: "#EFF1F5",
-                    height: 45,
-                    borderRadius: 19,
-                    justifyContent: "center",
-                    paddingLeft: 20,
-                    alignSelf: "center",
+                <Text
+                  style={{ fontFamily: "KoPubWorldDotum500", fontSize: 16 }}
+                >
+                  {input}
+                </Text>
+              </View>
+            </Pressable>
+            {input ? (
+              <View style={{ marginTop: 20 }}>
+                <Text
+                  style={{ fontSize: 15, fontWeight: "bold", marginLeft: 38 }}
+                >
+                  계좌 번호
+                </Text>
+                <Pressable
+                  onPress={() => {
+                    setKeypad(true);
                   }}
                 >
-                  <Text
-                    style={{ fontFamily: "KoPubWorldDotum500", fontSize: 16 }}
+                  <View
+                    style={{
+                      marginTop: 14,
+                      width: 333,
+                      backgroundColor: "#EFF1F5",
+                      height: 45,
+                      borderRadius: 19,
+                      justifyContent: "center",
+                      paddingLeft: 20,
+                      alignSelf: "center",
+                    }}
                   >
-                    {account}
-                  </Text>
-                </View>
-              </Pressable>
+                    <Text
+                      style={{ fontFamily: "KoPubWorldDotum500", fontSize: 16 }}
+                    >
+                      {account}
+                    </Text>
+                  </View>
+                </Pressable>
+                <Pressable
+                  onPress={() => {
+                    console.log("check account");
+                    navigation.replace("LinkAccount_002");
+                  }}
+                >
+                  <View
+                    style={{
+                      width: 333,
+                      backgroundColor: "#292929",
+                      height: 45,
+                      borderRadius: 19,
+                      justifyContent: "center",
+                      alignSelf: "center",
+                      marginTop: 360,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontFamily: "KoPubWorldDotum700",
+                        fontSize: 20,
+                        color: "#ECECEC",
+                        alignSelf: "center",
+                      }}
+                    >
+                      1원 인증하기
+                    </Text>
+                  </View>
+                </Pressable>
+              </View>
+            ) : null}
+
+            <Modal transparent={true} visible={modal}>
               <Pressable
                 onPress={() => {
-                  console.log("check account");
-                  navigation.replace("LinkAccount_002");
+                  setModal(false);
                 }}
               >
                 <View
                   style={{
-                    width: 333,
-                    backgroundColor: "#292929",
-                    height: 45,
-                    borderRadius: 19,
-                    justifyContent: "center",
-                    alignSelf: "center",
-                    marginTop: 360,
+                    height: height - 405,
+                    backgroundColor: "rgba(0,0,0,0.58)",
+                  }}
+                ></View>
+              </Pressable>
+
+              <View
+                style={{
+                  height: 405,
+                  backgroundColor: "rgba(0,0,0,0.58)",
+                }}
+              >
+                <View
+                  style={{
+                    height: 405,
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    paddingTop: 29,
+                    paddingHorizontal: 29,
+                    paddingBottom: 57,
                   }}
                 >
                   <Text
                     style={{
                       fontFamily: "KoPubWorldDotum700",
-                      fontSize: 20,
-                      color: "#ECECEC",
-                      alignSelf: "center",
+                      fontSize: 24,
+                      marginLeft: 9,
                     }}
                   >
-                    1원 인증하기
+                    은행선택
                   </Text>
+                  <View
+                    style={{
+                      backgroundColor: "#EFF1F5",
+                      height: 62,
+                      alignItems: "center",
+                      paddingLeft: 18,
+                      marginTop: 14,
+                      marginBottom: 6,
+                      borderRadius: 20,
+                      flexDirection: "row",
+                    }}
+                  >
+                    <Image
+                      source={require("../../assets/find.png")}
+                      style={{ marginRight: 12, width: 24, height: 24 }}
+                    />
+                    <TextInput
+                      placeholder="은행검색"
+                      style={{ fontSize: 16, flex: 1 }}
+                      onChangeText={finding}
+                    />
+                  </View>
+                  <View style={{ paddingHorizontal: 12 }}>
+                    <FlatList
+                      data={data}
+                      renderItem={mapping}
+                      numColumns={2}
+                      keyExtractor={(item) => item.name}
+                    />
+                  </View>
                 </View>
+              </View>
+            </Modal>
+            <Modal transparent={true} visible={keypad}>
+              <Pressable onPress={() => setKeypad(false)}>
+                <View style={{ height: height - 300 }} />
               </Pressable>
-            </View>
-          ) : null}
-
-          <Modal transparent={true} visible={modal}>
-            <Pressable
-              onPress={() => {
-                setModal(false);
-              }}
-            >
-              <View
-                style={{
-                  height: height - 405,
-                  backgroundColor: "rgba(0,0,0,0.58)",
-                }}
-              ></View>
-            </Pressable>
-
-            <View
-              style={{
-                height: 405,
-                backgroundColor: "rgba(0,0,0,0.58)",
-              }}
-            >
-              <View
-                style={{
-                  height: 405,
-                  backgroundColor: "white",
-                  borderRadius: 20,
-                  paddingTop: 29,
-                  paddingHorizontal: 29,
-                  paddingBottom: 57,
-                }}
-              >
-                <Text
-                  style={{
-                    fontFamily: "KoPubWorldDotum700",
-                    fontSize: 24,
-                    marginLeft: 9,
-                  }}
-                >
-                  은행선택
-                </Text>
-                <View
-                  style={{
-                    backgroundColor: "#EFF1F5",
-                    height: 62,
-                    alignItems: "center",
-                    paddingLeft: 18,
-                    marginTop: 14,
-                    marginBottom: 6,
-                    borderRadius: 20,
-                    flexDirection: "row",
-                  }}
-                >
-                  <Image
-                    source={require("../../assets/find.png")}
-                    style={{ marginRight: 12, width: 24, height: 24 }}
-                  />
-                  <TextInput
-                    placeholder="은행검색"
-                    style={{ fontSize: 16, flex: 1 }}
-                    onChangeText={finding}
-                  />
-                </View>
-                <View style={{ paddingHorizontal: 12 }}>
-                  <FlatList
-                    data={data}
-                    renderItem={mapping}
-                    numColumns={2}
-                    keyExtractor={(item) => item.name}
-                  />
-                </View>
-              </View>
-            </View>
-          </Modal>
-          <Modal transparent={true} visible={keypad}>
-            <Pressable onPress={() => setKeypad(false)}>
-              <View style={{ height: height - 300 }} />
-            </Pressable>
-            <View style={{ position: "absolute", bottom: 0 }}>
-              <View style={styles.container}>
-                <View style={styles.row}>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account + "1")}
-                  >
-                    <Text style={styles.buttonText}>1</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account + "2")}
-                  >
-                    <Text style={styles.buttonText}>2</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account + "3")}
-                  >
-                    <Text style={styles.buttonText}>3</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.row}>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account + "4")}
-                  >
-                    <Text style={styles.buttonText}>4</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account + "5")}
-                  >
-                    <Text style={styles.buttonText}>5</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account + "6")}
-                  >
-                    <Text style={styles.buttonText}>6</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.row}>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account + "7")}
-                  >
-                    <Text style={styles.buttonText}>7</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account + "8")}
-                  >
-                    <Text style={styles.buttonText}>8</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account + "9")}
-                  >
-                    <Text style={styles.buttonText}>9</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={[styles.row, { borderBottomWidth: 0 }]}>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setKeypad(false)}
-                  >
-                    <Text style={styles.buttonText}>내리기</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account + "0")}
-                  >
-                    <Text style={styles.buttonText}>0</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setAccount(account.slice(0, -1))}
-                  >
-                    <Text style={styles.buttonText}>{"<"}</Text>
-                  </TouchableOpacity>
+              <View style={{ position: "absolute", bottom: 0 }}>
+                <View style={styles.container}>
+                  <View style={styles.row}>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account + "1")}
+                    >
+                      <Text style={styles.buttonText}>1</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account + "2")}
+                    >
+                      <Text style={styles.buttonText}>2</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account + "3")}
+                    >
+                      <Text style={styles.buttonText}>3</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.row}>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account + "4")}
+                    >
+                      <Text style={styles.buttonText}>4</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account + "5")}
+                    >
+                      <Text style={styles.buttonText}>5</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account + "6")}
+                    >
+                      <Text style={styles.buttonText}>6</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.row}>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account + "7")}
+                    >
+                      <Text style={styles.buttonText}>7</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account + "8")}
+                    >
+                      <Text style={styles.buttonText}>8</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account + "9")}
+                    >
+                      <Text style={styles.buttonText}>9</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={[styles.row, { borderBottomWidth: 0 }]}>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setKeypad(false)}
+                    >
+                      <Text style={styles.buttonText}>내리기</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account + "0")}
+                    >
+                      <Text style={styles.buttonText}>0</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => setAccount(account.slice(0, -1))}
+                    >
+                      <Text style={styles.buttonText}>{"<"}</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
-            </View>
-          </Modal>
+            </Modal>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

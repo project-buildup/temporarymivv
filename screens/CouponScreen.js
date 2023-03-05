@@ -22,6 +22,7 @@ import { useRecoilValue } from "recoil";
 
 const arr = [0, 1, 2, 3, 4, 5];
 const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
 
 function CouponScreen({ navigation }) {
   const handleKeyPress = (key) => {
@@ -60,11 +61,32 @@ function CouponScreen({ navigation }) {
     });
 
     return (
-      <View>
-        <View style={{ alignItems: "center", marginBottom: 60 }}>
+      <View style={{ alignItems: "center", position: "absolute", bottom: 0 }}>
+        <Text
+          style={{
+            color: "white",
+            fontFamily: "KoPubWorldDotum700",
+            fontSize: 29,
+            marginBottom: 14,
+          }}
+        >
+          레드맥스짐 3월 할인권
+        </Text>
+        <Text
+          style={{
+            color: "white",
+            fontFamily: "KoPubWorldDotum700",
+            fontSize: 19,
+            marginBottom: 23,
+          }}
+        >
+          직원 확인 번호 6자리를 입력해주세요
+        </Text>
+        <View>
           <View
             style={{
               flexDirection: "row",
+              marginBottom: 30,
             }}
           >
             {mapping}
@@ -545,24 +567,6 @@ function CouponScreen({ navigation }) {
               </Text>
             </View>
             <View style={styles.modalBackground}>
-              <Text
-                style={{
-                  color: "white",
-                  fontFamily: "KoPubWorldDotum700",
-                  fontSize: 29,
-                }}
-              >
-                레드맥스짐 3월 할인권
-              </Text>
-              <Text
-                style={{
-                  color: "white",
-                  fontFamily: "KoPubWorldDotum700",
-                  fontSize: 19,
-                }}
-              >
-                직원 확인 번호 6자리를 입력해주세요
-              </Text>
               <CustomNumberPad onKeyPress={handleKeyPress} />
             </View>
           </Modal>
