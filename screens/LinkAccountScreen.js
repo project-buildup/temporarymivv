@@ -2,7 +2,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LinkAccount_000 from "./LinkAccount/LinkAccount_000";
 import LinkAccount_001 from "./LinkAccount/LinkAccount_001";
-import LinkAccount_002 from "./LinkAccount/LinkAccount_002";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,15 +20,6 @@ function LinkAccountScreen() {
         <Stack.Screen
           name="LinkAccount_001"
           component={LinkAccount_001}
-          options={{
-            headerShown: false,
-            presentation: "transparentModal",
-            cardOverlayEnabled: true,
-          }}
-        />
-        <Stack.Screen
-          name="LinkAccount_002"
-          component={LinkAccount_002}
           options={{
             headerShown: false,
           }}

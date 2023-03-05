@@ -7,7 +7,6 @@ import {
   Text,
   View,
 } from "react-native";
-import Constants from "expo-constants";
 import MivvLogo from "../components/MivvLogo";
 import BackIcon from "../components/BackIcon";
 

@@ -184,7 +184,7 @@ function LinkAccount_000({ navigation }) {
                 <Pressable
                   onPress={() => {
                     console.log("check account");
-                    navigation.replace("LinkAccount_002");
+                    navigation.replace("LinkAccount_001");
                   }}
                 >
                   <View

@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import BackIcon from "../../components/BackIcon";
+import NoticeItem from "../../components/NoticeItem";
 
 function Notice_000({ setIsEvent, navigation }) {
   return (
@@ -43,7 +44,7 @@ function Notice_000({ setIsEvent, navigation }) {
               alignItems: "center",
             }}
           >
-            <View style={{ flexDirection: "row", marginTop: 20 }}>
+            <View style={{ flexDirection: "row", margin: 20 }}>
               <Pressable
                 style={{
                   width: 100,
@@ -107,6 +108,20 @@ function Notice_000({ setIsEvent, navigation }) {
                 </Text>
               </Pressable>
             </View>
+            <NoticeItem
+              image={{
+                uri: "https://github.com/Sebyeok/mivvAssets/blob/main/pubLogo1.png?raw=true",
+              }}
+              content="새로운 챌린지가 생겼어요!"
+              desc="배달비 아끼고 건강도 챙기기 챌린지에 참여하세요."
+            />
+            <NoticeItem
+              image={{
+                uri: "https://github.com/Sebyeok/mivvAssets/blob/main/pubLogo1.png?raw=true",
+              }}
+              content="새로운 챌린지가 생겼어요!"
+              desc="배달비 아끼고 건강도 챙기기 챌린지에 참여하세요."
+            />
           </View>
         </View>
       </ScrollView>

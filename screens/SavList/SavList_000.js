@@ -1,4 +1,5 @@
 import {
+  Image,
   Platform,
   Pressable,
   ScrollView,
@@ -8,73 +9,136 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import BackIcon from "../../components/BackIcon";
+import SavListItem from "../../components/SavListItem";
+import { useRecoilValue } from "recoil";
+import { userIdState, userState } from "../../data/atom";
+import SavListTitle from "../../components/SavListTitle";
 
 function SavList_000({ setIsMonth, navigation }) {
+  const userIds = useRecoilValue(userIdState);
+  const users = useRecoilValue(userState);
+
   return (
     <View style={styles.root}>
       <ScrollView bounces={false}>
         <View style={styles.rootContainer}>
-          <View style={styles.logoContainer}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Pressable
-                style={{ marginLeft: 22 }}
-                onPress={() => {
-                  navigation.goBack();
-                }}
-              >
-                <BackIcon />
-              </Pressable>
-              <Text
-                style={{
-                  marginLeft: 20,
-                  color: "#000000",
-                  fontFamily: "KoPubWorldDotum700",
-                  fontSize: 19,
-                }}
-              >
-                절약 내역
-              </Text>
-            </View>
-            <View style={{ flexDirection: "row" }}>
-              <Text
-                style={{
-                  color: "#0047CF",
-                  fontFamily: "KoPubWorldDotum700",
-                  fontSize: 19,
-                }}
-              >
-                월별
-              </Text>
-              <Text
-                style={{
-                  color: "#C8C8C8",
-                  fontFamily: "KoPubWorldDotum700",
-                  fontSize: 19,
-                }}
-              >
-                {" "}
-                |{" "}
-              </Text>
-              <Pressable
-                onPress={() => {
-                  setIsMonth(false);
-                }}
-              >
-                <Text
-                  style={{
-                    color: "#C8C8C8",
-                    fontFamily: "KoPubWorldDotum700",
-                    fontSize: 19,
-                    marginRight: 24,
-                  }}
-                >
-                  전체
-                </Text>
-              </Pressable>
-            </View>
+          <View
+            style={{
+              width: "100%",
+              height: 54,
+              backgroundColor: "#ffffff",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              paddingHorizontal: 20,
+            }}
+          >
+            <Pressable onPress={() => {}}>
+              <Image
+                style={{ width: 10, height: 19 }}
+                source={require("../../assets/leftGrayArrowIcon.png")}
+              />
+            </Pressable>
+            <Text style={{ fontFamily: "KoPubWorldDotum700", fontSize: 16 }}>
+              2023년 3월
+            </Text>
+            <Pressable onPress={() => {}}>
+              <Image
+                style={{ width: 10, height: 19 }}
+                source={require("../../assets/rightGrayArrowIcon.png")}
+              />
+            </Pressable>
           </View>
+          <View
+            style={{ width: "100%", height: 1, backgroundColor: "#E3E3E3" }}
+          />
+          <SavListTitle content={"3일 (금)"} />
+          <SavListItem
+            image={users[userIds[0]].image}
+            content="택시 대신 만보걷기"
+            time="04:12"
+            price={4500}
+          />
+          <SavListItem
+            image={users[userIds[0]].image}
+            content="택시 대신 만보걷기"
+            time="04:12"
+            price={4500}
+          />
+          <SavListTitle content={"1일 (수)"} />
+          <SavListItem
+            image={users[userIds[0]].image}
+            content="택시 대신 만보걷기"
+            time="04:12"
+            price={4500}
+          />
+          <SavListItem
+            image={users[userIds[0]].image}
+            content="택시 대신 만보걷기"
+            time="04:12"
+            price={4500}
+          />
         </View>
       </ScrollView>
+      <View style={styles.logoContainer}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Pressable
+            style={{ marginLeft: 22 }}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
+            <BackIcon />
+          </Pressable>
+          <Text
+            style={{
+              marginLeft: 20,
+              color: "#000000",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 19,
+            }}
+          >
+            절약 내역
+          </Text>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <Text
+            style={{
+              color: "#0047CF",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 19,
+            }}
+          >
+            월별
+          </Text>
+          <Text
+            style={{
+              color: "#C8C8C8",
+              fontFamily: "KoPubWorldDotum700",
+              fontSize: 19,
+            }}
+          >
+            {" "}
+            |{" "}
+          </Text>
+          <Pressable
+            onPress={() => {
+              setIsMonth(false);
+            }}
+          >
+            <Text
+              style={{
+                color: "#C8C8C8",
+                fontFamily: "KoPubWorldDotum700",
+                fontSize: 19,
+                marginRight: 24,
+              }}
+            >
+              전체
+            </Text>
+          </Pressable>
+        </View>
+      </View>
     </View>
   );
 }
@@ -90,11 +154,14 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     alignItems: "center",
+    paddingTop: 120,
   },
   logoContainer: {
     width: "100%",
     height: 120,
     paddingTop: 50,
+    position: "absolute",
+    top: 0,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

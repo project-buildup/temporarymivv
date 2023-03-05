@@ -23,7 +23,7 @@ function RemitDoneScreen({ navigation }) {
             <Text
               style={{
                 color: "#0047CF",
-                fontFamily: "Inter700",
+                fontFamily: "KoPubWorldDotum700",
                 fontSize: 15,
               }}
             >
