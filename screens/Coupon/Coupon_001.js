@@ -283,6 +283,7 @@ function Coupon_001({ setIsPossible, navigation }) {
               normalPrice={values[coupons[couponIds[0]].valueId].price.original}
               salePrice={values[coupons[couponIds[0]].valueId].price.sale}
               priceTag={values[coupons[couponIds[0]].valueId].pricetag}
+              setPopUpVisible={setPopUpVisible}
             />
           </View>
         </View>

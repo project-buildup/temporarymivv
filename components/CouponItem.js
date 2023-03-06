@@ -1,7 +1,14 @@
 import { StyleSheet } from "react-native";
 import { Image, Pressable, Text, View } from "react-native";
 
-function CouponItem({ image, title, normalPrice, salePrice, priceTag }) {
+function CouponItem({
+  image,
+  title,
+  normalPrice,
+  salePrice,
+  priceTag,
+  setPopUpVisible,
+}) {
   return (
     <View style={styles.container}>
       <Image
